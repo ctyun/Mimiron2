@@ -10,18 +10,18 @@ var pkg = require('./package.json');
 
 var entry = {};
 // entry[pkg.name + '-' + pkg.version] = ['./components/index.js', './style/index.less'];
-entry[pkg.name + '-' + pkg.version] = './components/index.js';
+entry[pkg.name + '-' + pkg.version] = './style/index.less';
 
 module.exports = {
   entry: entry,
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.css', '.less']
   },
 
   output: {
     path: path.join(process.cwd(), 'dist'),
-    filename: '[name].min.js',
+    filename: '[name].min.css',
     library: 'mimiron2', //https://webpack.github.io/docs/library-and-externals.html
     libraryTarget: 'umd2'
   },
@@ -44,17 +44,6 @@ module.exports = {
 
   module: {
     loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel'
-    }, {
-      test: /\.js?$/,
-      exclude: /node_modules/,
-      loader: 'babel'
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
-    }, {
       test: /\.less$/,
       loader: ExtractTextPlugin.extract(
         'css?sourceMap&-minimize!' + 'autoprefixer-loader!' + 'less?sourceMap'

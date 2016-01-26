@@ -8,4 +8,13 @@ Mimiron2经过打包之后得到一个js文件, 一个css文件, 之间引入HTM
 
 ### 使用
 
-FIXME
+1. 打包组件库 `npm run release`
+
+1. 打包样式文件 `npm run creatcss`
+
+1. 调试 `npm run debug`
+
+
+### Tips
+
+1. 在webpack中公用一个entry会导致无法暴露output.library中的元素.

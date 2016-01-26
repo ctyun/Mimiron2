@@ -18,10 +18,6 @@
   "contributors": [
     "ant"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ant-design/ant-design.git"
-  },
   "bugs": {
     "url": "https://github.com/ant-design/ant-design/issues"
   },
@@ -107,8 +103,10 @@
     "react-dom": "0.14.x",
     "react-router": "~1.0.3",
     "react-stateless-wrapper": "~1.0.2",
+    "react-hot-loader": "^1.3.0",
     "reqwest": "~2.0.5",
     "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1",
     "webpack-babel-jest": "^1.0.0",
     "webpack-dev-middleware": "^1.2.0"
   },
@@ -126,7 +124,10 @@
     "jest": "jest",
     "pub": "sh ./scripts/publish.sh",
     "webpack": "webpack",
-    "beta": "sh ./scripts/publish.sh --tag beta"
+    "beta": "sh ./scripts/publish.sh --tag beta",
+    "debug": "node server.js",
+    "release": "webpack --config webpack.config.release.js",
+    "creatcss": "webpack --config webpack.config.creatcss.js"
   },
   "jest": {
     "testRunner": "<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2",
@@ -146,9 +147,6 @@
     "testDirectoryName": "tests",
     "preprocessCachingDisabled": false
   },
-  "pre-commit": [
-    "lint"
-  ],
   "babel": {
     "presets": [
       "es2015",
