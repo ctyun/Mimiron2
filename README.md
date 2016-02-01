@@ -18,3 +18,8 @@ Mimiron2经过打包之后得到一个js文件, 一个css文件, 之间引入HTM
 ### Tips
 
 1. 在webpack中公用一个entry会导致无法暴露output.library中的元素.
+
+
+### 基本元素的样式修改
+
+1. btn: margin:0, 5px

@@ -8,9 +8,14 @@
 </head>
 <body>
   <div id="main"></div>
-  <div id="react-content"></div>
-  <script src="./dist/thirds/browser.min.js"></script>
+  <!-- IE8运行Velocity需要先加载jquery -->
+  <script scr="./dist/thirds/jquery1.9.min.js"></script>
+  <!-- IE8运行babel需要的Polyfills -->
   <script src="./dist/thirds/polyfill.min.js"></script>
+  <!-- babel前端转义工具 -->
+  <script src="./dist/thirds/browser.min.js"></script>
+  <!-- IE8运行组件库所需的Polyfills -->
+  <script src="./dist/thirds/mimiron2-ployfill-for-ie8.js"></script>
   <!--created js in RAM-->
   <script src="/static/bundle.js"></script>
 
