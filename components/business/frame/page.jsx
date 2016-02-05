@@ -9,7 +9,8 @@ const Page = React.createClass({
 			<Topbar userName={this.props.userName}/>
 			<div id="wrapper">
 				<Sidebar />
-				<div id="page-main" style={{"float":"left","width":"85%"}}>
+				<div id="current-page" style={{"float":"left","width":"85%"}}>
+					<div id="ajax-loading"></div>
 					{this.props.children}
 				</div>
 			</div>

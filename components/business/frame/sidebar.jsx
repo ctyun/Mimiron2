@@ -1,17 +1,24 @@
 import React from 'react';
 import Menu from "../../basic/menu";
 import Icon from "../../basic/icon";
+import Loader from "../../tools/loader"
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 const Sidebar = React.createClass({
+  getDefaultProps(){
+    return {
+      init:"index",
+    }
+  },
   getInitialState() {
     return {
-      current: '1'
+      current: this.props.init,
     };
   },
   handleClick(e) {
-    console.log('click ', e);
+    //console.log('click ', e);
+    Loader.loadUrl(e.key);
     this.setState({
       current: e.key
     });
@@ -25,8 +32,8 @@ const Sidebar = React.createClass({
         mode="inline">
         <SubMenu key="sub1" title={<span><Icon type="mail" /><span>导航一</span></span>}>
           <MenuItemGroup title="分组1">
-            <Menu.Item key="1">选项1</Menu.Item>
-            <Menu.Item key="2">选项2</Menu.Item>
+            <Menu.Item key="/basedemo">基本组件演示</Menu.Item>
+            <Menu.Item key="/businessdemo">业务组件演示</Menu.Item>
           </MenuItemGroup>
           <MenuItemGroup title="分组2">
             <Menu.Item key="3">选项3</Menu.Item>

@@ -556,6 +556,11 @@ let AntTable = React.createClass({
         <Icon type="frown"/>{locale.emptyText}
       </div>;
       emptyClass = ' ant-table-empty';
+    } else { //redner循环数据如果没有key, 会报一个警告.
+      for(let i=0; i<data.length; i++){
+        if(!data[i]["key"])
+          data[i]["key"] = i;
+      }
     }
 
     let table = <div>

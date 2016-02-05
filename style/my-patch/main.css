@@ -16,7 +16,7 @@
     float: left;
 }
 
-.top-right a{
+.topbar-right a{
 	float: right;
     font-size: larger;
     margin: 8px;
@@ -27,3 +27,11 @@
 	height:40px;
 }
 
+ul.ant-pagination {
+    float: right;
+}
+
+.page-loading {
+    text-align:center;
+    vertical-align:middle;
+}

@@ -22,7 +22,7 @@ const Mimiron2 = {
   InputNumber: require('./basic/input-number'),
   Switch: require('./basic/switch'),
   Checkbox: require('./basic/checkbox'),
-  Table: require('./basic/table'),
+  TableRaw: require('./basic/table'),
   Tag: require('./basic/tag'),
   Collapse: require('./basic/collapse'),
   message: require('./basic/message'),
@@ -51,6 +51,8 @@ const Mimiron2 = {
   Page: require("./business/frame/page"),
   Sidebar: require("./business/frame/sidebar"),
   Topbar: require("./business/frame/topbar"),
+  Table: require("./business/table"),
+  Ajax: require("./tools/ajax"),
 };
 
 Mimiron2.version = require('../package.json').version;
