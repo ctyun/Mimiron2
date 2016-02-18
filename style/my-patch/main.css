@@ -35,3 +35,8 @@ ul.ant-pagination {
     text-align:center;
     vertical-align:middle;
 }
+
+.ant-form-item .ant-select {
+    width:100%;
+    height: 32px;
+}

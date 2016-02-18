@@ -2,6 +2,8 @@ import React from 'react';
 import Select from 'rc-select';
 import classNames from 'classnames';
 
+const Option = Select.Option;
+
 const AntSelect = React.createClass({
   getDefaultProps() {
     return {
@@ -28,8 +30,21 @@ const AntSelect = React.createClass({
       notFoundContent = null;
     }
 
+    let data=[];
+    if (this.props.data){
+      for(let i in this.props.data){
+        if(this.props.data[i].value){
+          data.push(<Option value={this.props.data[i].value} {...this.props.data[i].extra}> {this.props.data[i].text} </Option>);
+        } else{
+          data.push(<Option value={i}>{this.props.data[i]}</Option>);
+        }
+      }
+    }
+    console.log("data",data);
+
     return (
       <Select {...this.props}
+        children = {data.length==0?this.props.children:data}
         className={cls}
         notFoundContent={notFoundContent} />
     );

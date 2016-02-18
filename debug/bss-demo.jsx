@@ -17,6 +17,10 @@ const RadioGroup = Radio.Group;
 const TableRaw = mimiron2.TableRaw;
 const Table = mimiron2.Table;
 const Ajax = mimiron2.Ajax;
+const Query = mimiron2.Query;
+const Input = mimiron2.Input;
+const Select = mimiron2.Select;
+const Option = Select.Option;
 
 class Show extends React.Component{
   render() {
@@ -42,24 +46,17 @@ let Demo = React.createClass({
   },
   getInitialState: function () {
     return {
-      radioValue: 'a',
       table:{
         pageSize:10,
         pageNo:1,
         totalRows:0,
         data: [],
-      }
+      },
+      options: []
     };
   },
   componentDidMount: function(){
-    console.log("did mount");
     this.doList(this.state.table.pageNo, this.state.table.pageSize);
-  },
-  checkboxChange: function(checkedValues) {
-    console.log('checked = ', checkedValues);
-  },
-  radioChange:function(e){
-    console.log('radio checked:' + e.target.value);
   },
   doList: function(pageNo, pageSize){ //params用在查询时, 传入其他参数
       var _this = this;
@@ -85,32 +82,24 @@ let Demo = React.createClass({
           });
       });
   },
+  InputChange (value){
+    console.log("额外输入回调", value);
+  },
+  handleSelectChange(value) {
+    let options;
+    if (!value || value.indexOf('@') >= 0) {
+      options = [];
+    } else {
+      options = ['gmail.com', '163.com', 'qq.com'].map(function(domain) {
+        const email = value + '@' + domain;
+        return <Option key={email}>{email}</Option>;
+      });
+    }
+    this.setState({
+      options: options
+    });
+  },
   render: function() {
-    const dataSource = [{
-      key: '1',
-      name: '胡彦斌',
-      age: 32,
-      address: '西湖区湖底公园1号'
-    }, {
-      key: '2',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号'
-    }];
-
-    const columns = [{
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name',
-    }, {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age',
-    }, {
-      title: '住址',
-      dataIndex: 'address',
-      key: 'address',
-    }];
     let tableProps={
       title:['受理单号','客户经理','客户名称','受理单类型','是否试用','状态','总金额','订购类型','订购周期','提交日期','资源开通日期'],
       jsonKey:['requestTicketsNo','CMname','accountName','useType','isTrial','status','totalPrice','cycleType','cycleCnt','requestDate','createDate'],
@@ -121,43 +110,34 @@ let Demo = React.createClass({
       totalRows:this.state.table.totalRows,
       checkType:"none",
     };
-    return (<div>
+    return (
     <div className="row">
-      <Show name="按钮">
-        <Button type="primary">主按钮</Button>
-        <Button type="primary" size="large">大号按钮</Button>
-        <Button type="primary" disabled>主按钮(失效)</Button>
-        <Button type="primary">
-          前进
-          <Icon type="right" />
-        </Button>
-      </Show>
-      <Show name="图标">
-        <Icon type="step-forward" />
-        <Icon type="double-right" />
-        <Icon type="plus" />
-      </Show>
-      <Show name="多选框">
-        <CheckboxGroup options={['Apple', 'Pear', 'Orange']} defaultValue={['Apple']} onChange={this.checkboxChange} />
-      </Show>
-      <Show name="单选框">
-        <RadioGroup onChange={this.radioChange} value={this.state.radioValue}>
-          <Radio value="a">A</Radio>
-          <Radio value="b">B</Radio>
-          <Radio value="c">C</Radio>
-          <Radio value="d">D</Radio>
-        </RadioGroup>
-      </Show>
-      <Show name="日期选择">
-        <DatePicker defaultValue="2015/01/01" format="yyyy/MM/dd" />
-      </Show>
-      <Show name="ant表格">
-        <TableRaw dataSource={dataSource} columns={columns} />
+      <Show name="查询框">
+        <Query>
+          <Input name="input1" placeholder="请输入搜索名称" label="搜索名称：" />
+          <Input name="input2" placeholder="请输入搜索名称" label="搜索名称：" onChange={this.InputChange}/>
+          <Input name="input3" placeholder="请输入搜索名称" label="搜索名称：" />
+          <Select combobox size="large"
+            name="input4"
+            onChange={this.handleSelectChange}
+            filterOption={false}
+            searchPlaceholder="请输入账户名"
+            label="提示输入：">
+            {this.state.options}
+          </Select>
+          <Select name="input5" label="选择框：" size="large" defaultValue="lucy">
+            <Option value="jack">Jack</Option>
+            <Option value="lucy">Lucy</Option>
+            <Option value="disabled" disabled>Disabled</Option>
+            <Option value="yiminghe">yiminghe</Option>
+          </Select>
+          <DatePicker name="input6" label="日期选择：" defaultValue="2015/01/01" format="yyyy/MM/dd" />
+          <Select name="input7" label="另一种选择框：" data={{"1":"yi","2":"er"}} />
+        </Query>
       </Show>
       <Show name="表格">
         <Table {...tableProps} />
       </Show>
-    </div>
     </div>);
   }
 });

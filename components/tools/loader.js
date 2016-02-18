@@ -2,7 +2,6 @@
 
 let Loader={
 	loadUrl(url) { //根据url进行加载资源
-		console.log(url);
 		window.location.hash = url;
 		if(!window.mimiron2.RouteConfig){
 			console.info(`请先定义window.mimiron2.RouteConfig`);
@@ -15,6 +14,7 @@ let Loader={
                 return 
             }
         }
+        console.info(`url ${url} 没有注册.`);
 	},
 	loadJSX(path) { //根据路径加载jsx文件
 		//先删除其他无用的jsx

@@ -8,7 +8,7 @@ const Page = React.createClass({
 		<div>
 			<Topbar userName={this.props.userName}/>
 			<div id="wrapper">
-				<Sidebar />
+				<Sidebar list={this.props.sidebarList}/>
 				<div id="current-page" style={{"float":"left","width":"85%"}}>
 					<div id="ajax-loading"></div>
 					{this.props.children}
