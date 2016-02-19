@@ -6,7 +6,7 @@ const Page = React.createClass({
 	render() {
 		return(
 		<div>
-			<Topbar userName={this.props.userName}/>
+			<Topbar userName={this.props.userName} title={this.props.title} onLogout={this.props.onLogout}/>
 			<div id="wrapper">
 				<Sidebar list={this.props.sidebarList}/>
 				<div id="current-page" style={{"float":"left","width":"85%"}}>

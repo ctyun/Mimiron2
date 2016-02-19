@@ -5,6 +5,8 @@ import Form from "../basic/form";
 const FormItem = Form.Item;
 import Input from "../basic/input";
 import Button from "../basic/button";
+import QueueAnim from "../basic/queue-anim";
+import Icon from "../basic/icon";
 
 function noop() {
 }
@@ -52,17 +54,26 @@ let Query = React.createClass({
 						</Col>);
 		}
 		return(<div>
-				<Form horizontal onSubmit={this.handleSubmit} id={this.props.id}>
-				  <Row>
-				    {formEntity}
-				  </Row>
-				  <Row>
-				    <Col span="8" offset="16" style={{ textAlign: 'right' }}>
-				      <Button type="primary" htmlType="submit">{this.props.submitName}</Button>
-				      <Button type="ghost" onClick={()=>{document.getElementById(this.props.id).reset()}}>清除条件</Button>
-				    </Col>
-				  </Row>
-				</Form>
+				<p className="buttons">
+		          <Button type="primary" onClick={()=>{this.setState({show:!this.state.show})}}>
+					查询条件 {this.state.show?<Icon type="minus-circle-o"/>:<Icon type="plus-circle"/>}
+				  </Button>
+		        </p>
+		        <QueueAnim delay={900}>
+		        	{this.state.show ? [
+					<Form horizontal onSubmit={this.handleSubmit} id={this.props.id} key="dummy">
+					  <Row>
+					    {formEntity}
+					  </Row>
+					  <Row>
+					    <Col span="8" offset="16" style={{ textAlign: 'right' }}>
+					      <Button type="primary" htmlType="submit">{this.props.submitName}</Button>
+					      <Button type="ghost" onClick={()=>{document.getElementById(this.props.id).reset()}}>清除条件</Button>
+					    </Col>
+					  </Row>
+					</Form>
+					]:null}
+				</QueueAnim>
 			</div>)
 	}
 });

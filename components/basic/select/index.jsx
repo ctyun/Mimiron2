@@ -40,7 +40,6 @@ const AntSelect = React.createClass({
         }
       }
     }
-    console.log("data",data);
 
     return (
       <Select {...this.props}

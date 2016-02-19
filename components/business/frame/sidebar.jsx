@@ -18,25 +18,6 @@ const Sidebar = React.createClass({
       toRender:null,
     };
   }, 
-  componentWillMount() {
-    let dummyKey=0;
-    let createNode = function(node){
-      let toReturn = [];
-      for(let item of node){ 
-        if(typeof(item.children) == "undefined" || item.children.length==0){
-          toReturn.push(<Menu.Item key={item.url || dummyKey++}>{item.name || ""}</Menu.Item>)
-        }
-        else{
-          toReturn.push(<SubMenu key={item.url || dummyKey++} title={<span><Icon type={item.icon||"appstore"} /><span>{item.name}</span></span>}>
-              {createNode(item.children)}
-            </SubMenu>
-            )
-        }
-      }
-      return toReturn
-    }
-    this.setState({toRender:createNode(this.props.list)});
-  },
   handleClick(e) {
     Loader.loadUrl(e.key);
     this.setState({
@@ -44,13 +25,35 @@ const Sidebar = React.createClass({
     });
   },
   render() {
+    let dummyKey=0;
+    let createNode = node => {
+      console.log(node)
+      let toReturn = [];
+      for(let item of node){ 
+        if(typeof(item.children) == "undefined" || item.children.length==0){
+          toReturn.push(<Menu.Item key={item.url || (dummyKey++).toString()}>{item.name || ""}</Menu.Item>)
+        }
+        else{
+          toReturn.push(<SubMenu key={item.url || (dummyKey++).toString()} title={<span><Icon type={item.icon||"appstore"} /><span>{item.name}</span></span>}>
+              {createNode(item.children)}
+            </SubMenu>
+            )
+        }
+      }
+      return toReturn
+    }
+    let toRender = null;
+    if(this.props.list.length>0)
+      console.log("will createNode");
+      toRender = createNode(this.props.list);
     return (
       <Menu onClick={this.handleClick}
         style={{ "width": "15%", "float":"left","minHeight":"600px" }}
         defaultOpenKeys={this.props.list.defaultOpenKeys}
         selectedKeys={[this.state.current]}
         mode="inline">
-        {this.state.toRender}
+        <li></li>
+        {toRender}
         <li></li>
       </Menu>
     );

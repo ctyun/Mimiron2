@@ -53,8 +53,10 @@ const Mimiron2 = {
   Topbar: require("./business/frame/topbar"),
   Table: require("./business/table"),
   Query: require("./business/query"),
+  Login: require("./business/page/login"),
   //工具
   Ajax: require("./tools/ajax"),
+  Loader: require("./tools/loader"),
 };
 
 Mimiron2.version = require('../package.json').version;
