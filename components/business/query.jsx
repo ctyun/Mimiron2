@@ -22,6 +22,7 @@ let Query = React.createClass({
 			formData: {},
 			submitName: "查询",
 			id: "query-from-default-id",
+			onSubmit: formData => {console.log(formData)},
 		}
 	},
 	setValue: function(func,name,e){
@@ -34,7 +35,7 @@ let Query = React.createClass({
 	},
 	handleSubmit: function(e){
 		e.preventDefault();
-		console.log(this.state.formData);
+		this.props.onSubmit(this.state.formData);
     	//console.log('收到表单值：', this.props.form.getFieldsValue());
 	},
 	render: function(){
@@ -54,12 +55,12 @@ let Query = React.createClass({
 						</Col>);
 		}
 		return(<div>
-				<p className="buttons">
+				<p className="buttons" style={{textAlign:"right",padding:10}}>
 		          <Button type="primary" onClick={()=>{this.setState({show:!this.state.show})}}>
 					查询条件 {this.state.show?<Icon type="minus-circle-o"/>:<Icon type="plus-circle"/>}
 				  </Button>
 		        </p>
-		        <QueueAnim delay={900}>
+		        <QueueAnim delay={100} type={["top"]} style={{padding:15}}>
 		        	{this.state.show ? [
 					<Form horizontal onSubmit={this.handleSubmit} id={this.props.id} key="dummy">
 					  <Row>

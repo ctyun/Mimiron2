@@ -20,7 +20,8 @@ let Loader={
         if(typeof(window.mimironUse.runScripts)=="undefined"){
           console.info(`如需异步加载jsx文件, 请使用Mimiron2自带的browser.js文件, 或者将babel下此文件的runScripts方法暴露到window.mimironUse下`);
         }
-        $("#current-page").html('<div class="ant-spin ant-spin-lg ant-spin-spining page-loading"><span class="ant-spin-dot ant-spin-dot-first"></span><span class="ant-spin-dot ant-spin-dot-second"></span><span class="ant-spin-dot ant-spin-dot-third"></span></div>'); //加载动画效果
+        // 这里需要约束所有jsx页面全部渲染到DOM id= page-wrapper
+        $("#page-wrapper").html('<div class="ant-spin ant-spin-lg ant-spin-spining page-loading"><span class="ant-spin-dot ant-spin-dot-first"></span><span class="ant-spin-dot ant-spin-dot-second"></span><span class="ant-spin-dot ant-spin-dot-third"></span></div>'); //加载动画效果
         let scripts = document.getElementsByTagName('script')
         //先删除其他无用的jsx
         for (let i = 0; i < scripts.length; i++) {

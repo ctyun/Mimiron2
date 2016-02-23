@@ -63,7 +63,7 @@ let Demo = React.createClass({
       var params = this.locals.params;
       params["pageNo"] = pageNo;
       params["pageSize"] = pageSize;
-      Ajax.post("http://127.0.0.1:9002/api/queryHandingForm",params , function(r){
+      Ajax.post("http://127.0.0.1:9002/api/queryHandingForm",params , r => {
           var data = r.result;
           for(var i in data){
             data[i]["operate"] = (<span>

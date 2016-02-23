@@ -53,6 +53,7 @@ const Mimiron2 = {
   Topbar: require("./business/frame/topbar"),
   Table: require("./business/table"),
   Query: require("./business/query"),
+  Command: require("./business/command"),
   Login: require("./business/page/login"),
   //工具
   Ajax: require("./tools/ajax"),

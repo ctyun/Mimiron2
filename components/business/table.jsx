@@ -52,7 +52,7 @@ let Table = React.createClass({
 		});
 	},
 	render: function(){
-		return(<div>
+		return(<div style={{padding:15}}>
 				<div className="row">
 					<TableRaw 
 						bordered 
@@ -65,6 +65,8 @@ let Table = React.createClass({
 					<Pagination style={{"float":"right"}}
 						showSizeChanger 
 						showQuickJumper  
+						current= {this.state.pageNo}
+						pageSize = {this.state.pageSize}
 						onChange={this.onChange}
 						onShowSizeChange={this.onShowSizeChange}
 						defaultCurrent={this.state.pageNo} 

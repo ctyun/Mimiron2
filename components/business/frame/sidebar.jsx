@@ -27,7 +27,6 @@ const Sidebar = React.createClass({
   render() {
     let dummyKey=0;
     let createNode = node => {
-      console.log(node)
       let toReturn = [];
       for(let item of node){ 
         if(typeof(item.children) == "undefined" || item.children.length==0){
@@ -40,11 +39,10 @@ const Sidebar = React.createClass({
             )
         }
       }
-      return toReturn
+      return toReturn;
     }
     let toRender = null;
-    if(this.props.list.length>0)
-      console.log("will createNode");
+    if(this.props.list && this.props.list.length>0)
       toRender = createNode(this.props.list);
     return (
       <Menu onClick={this.handleClick}
@@ -53,7 +51,7 @@ const Sidebar = React.createClass({
         selectedKeys={[this.state.current]}
         mode="inline">
         <li></li>
-        {toRender}
+        {toRender || <Menu.Item key="loading" disabled>loading</Menu.Item>}
         <li></li>
       </Menu>
     );
