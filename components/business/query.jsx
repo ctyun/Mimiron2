@@ -41,18 +41,27 @@ let Query = React.createClass({
 	render: function(){
 		let formData = this.state.formData;
 		let formEntity = [];
-		for(let i in this.props.children){
-			let child = React.cloneElement(this.props.children[i],
-				{onChange: this.setValue.bind(null, this.props.children[i].props["onChange"],
-					this.props.children[i].props["name"])});
-			formEntity.push(<Col span="8" key={i}>
-							<FormItem
-						        label={this.props.children[i].props["label"]}
-						        labelCol={{ span: 10 }}
-						        wrapperCol={{ span: 14 }}>
-						        {child}
-						    </FormItem>
-						</Col>);
+		let children;
+		if(!this.props.children.length){
+			children = [this.props.children];
+		} else{
+			children = this.props.children;
+		}
+		for(let i in children){
+			if(children[i]){
+				let child = React.cloneElement(children[i],
+					{onChange: this.setValue.bind(null, children[i].props["onChange"],
+						children[i].props["name"])});
+				formEntity.push(<Col span="8" key={i}>
+								<FormItem
+							        label={children[i].props["label"] || children[i].props["labelName"]}
+							        labelCol={{ span: 10 }}
+							        wrapperCol={{ span: 14 }}>
+							        {child}
+							    </FormItem>
+							</Col>
+				);
+			}
 		}
 		return(<div>
 				<p className="buttons" style={{textAlign:"right",padding:10}}>
@@ -60,7 +69,7 @@ let Query = React.createClass({
 					查询条件 {this.state.show?<Icon type="minus-circle-o"/>:<Icon type="plus-circle"/>}
 				  </Button>
 		        </p>
-		        <QueueAnim delay={100} type={["top"]} style={{padding:15}}>
+		        <QueueAnim delay={100} type={["top"]} style={{paddingRight:15}}>
 		        	{this.state.show ? [
 					<Form horizontal onSubmit={this.handleSubmit} id={this.props.id} key="dummy">
 					  <Row>

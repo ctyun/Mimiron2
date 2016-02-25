@@ -7,6 +7,8 @@ let Ajax = {
 		jQuery.ajax({
 			url:url,
 			method:"GET",
+			contentType:"application/json",
+			dataType: 'json',
 			success: data => {
 				func(data);
 			},
@@ -20,6 +22,8 @@ let Ajax = {
 			url:url,
 			method:"POST",
         	data: JSON.stringify(params),
+        	contentType:"application/json",
+        	dataType: 'json',
         	success: data => {
 				func(data);
 			},
@@ -37,7 +41,7 @@ let Ajax = {
 	},
 	onComplete: function() {
 		// 取消css效果
-		--mimironUse.loadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
+		--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
 	}
 }
 

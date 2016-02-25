@@ -8,9 +8,9 @@ const Page = React.createClass({
 		<div>
 			<Topbar userName={this.props.userName} title={this.props.title} onLogout={this.props.onLogout}/>
 			<div id="wrapper">
+				<div id="ajax-loading" className="la-anim-10"></div>
 				<Sidebar list={this.props.sidebarList}/>
 				<div id="current-page" style={{"float":"left","width":"85%"}}>
-					<div id="ajax-loading"></div>
 					{this.props.children}
 				</div>
 			</div>

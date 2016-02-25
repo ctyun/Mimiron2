@@ -44,6 +44,10 @@ module.exports = {
 
   module: {
     loaders: [{
+      test: /\.jsx?$/,  //fix for IE8, https://github.com/ant-design/antd-init/blob/8c4a55d205c82a6ad87814bbf997696051713d58/boilerplate/webpack.config.js#L10-L14
+      loader: 'es3ify',
+    },
+    {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel'

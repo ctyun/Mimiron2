@@ -1,5 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+require('es5-shim'); //为了兼容IE8, 参考:https://github.com/xcatliu/react-ie8#cn-make-your-react-app-work-in-ie8  ->其他问题, 第2条
+require('es5-shim/es5-sham');
+
+const React=require('react');
+const ReactDOM=require('react-dom');
 
 const Mimiron2 = {
   React: React,
@@ -55,9 +58,11 @@ const Mimiron2 = {
   Query: require("./business/query"),
   Command: require("./business/command"),
   Login: require("./business/page/login"),
+  List: require("./business/list"),
   //工具
   Ajax: require("./tools/ajax"),
   Loader: require("./tools/loader"),
+  Misc: require("./tools/misc"),
 };
 
 Mimiron2.version = require('../package.json').version;

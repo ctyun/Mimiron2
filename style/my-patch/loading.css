@@ -325,7 +325,7 @@
 	right: 0;
 	width: 300px;
 	height: 300px;
-	background: #ed4e6e;
+	background: #DCEAF9;
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 	-webkit-transform: translateX(100%) translateY(-100%) rotate(45deg);
@@ -355,8 +355,8 @@
 	margin-left: -40px;
 	width: 80px;
 	height: 80px;
-	border-right-color: #bb344f;
-	border-left-color: #bb344f;
+	border-right-color: #2DB7F5;
+	border-left-color: #2DB7F5;
 	-webkit-animation: rotation 3s linear infinite;
 	animation: rotation 3s linear infinite;
 }
@@ -366,8 +366,8 @@
 	margin-left: -20px;
 	width: 40px;
 	height: 40px;
-	border-top-color: #bb344f;
-	border-bottom-color: #bb344f;
+	border-top-color: #2DB7F5;
+	border-bottom-color: #2DB7F5;
 	-webkit-animation: rotation 1s linear infinite;
 	animation: rotation 1s linear infinite;
 }
