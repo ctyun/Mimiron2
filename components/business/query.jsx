@@ -3,6 +3,7 @@ import Row from '../basic/row';
 import Col from '../basic/col';
 import Form from "../basic/form";
 const FormItem = Form.Item;
+const createForm = Form.create;
 import Input from "../basic/input";
 import Button from "../basic/button";
 import QueueAnim from "../basic/queue-anim";
@@ -49,9 +50,15 @@ let Query = React.createClass({
 		}
 		for(let i in children){
 			if(children[i]){
-				let child = React.cloneElement(children[i],
-					{onChange: this.setValue.bind(null, children[i].props["onChange"],
-						children[i].props["name"])});
+				let childName = children[i].props["name"];
+				let injectProps = {
+					onChange: this.setValue.bind(null, children[i].props["onChange"],
+						children[i].props["name"])
+				}
+				if(this.state.formData.childName){
+					injectProps["value"] = this.state.formData.childName
+				}
+				let child = React.cloneElement(children[i],injectProps);
 				formEntity.push(<Col span="8" key={i}>
 								<FormItem
 							        label={children[i].props["label"] || children[i].props["labelName"]}
@@ -78,7 +85,7 @@ let Query = React.createClass({
 					  <Row>
 					    <Col span="8" offset="16" style={{ textAlign: 'right' }}>
 					      <Button type="primary" htmlType="submit">{this.props.submitName}</Button>
-					      <Button type="ghost" onClick={()=>{document.getElementById(this.props.id).reset()}}>清除条件</Button>
+					      <Button type="ghost" onClick={()=>{document.getElementById(this.props.id).reset(); this.setState({formData:{}});this.props.form.resetFields();}}>清除条件</Button>
 					    </Col>
 					  </Row>
 					</Form>
@@ -87,5 +94,7 @@ let Query = React.createClass({
 			</div>)
 	}
 });
+
+Query = createForm()(Query);
 
 export default Query;

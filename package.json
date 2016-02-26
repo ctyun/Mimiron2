@@ -129,7 +129,8 @@
     "beta": "sh ./scripts/publish.sh --tag beta",
     "debug": "node server.js",
     "release": "webpack --config webpack.config.release.js",
-    "creatcss": "webpack --config webpack.config.creatcss.js"
+    "creatcss": "webpack --config webpack.config.creatcss.js",
+    "compilepages": "webpack --config webpack.config.compilepages.js"
   },
   "jest": {
     "testRunner": "<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2",
