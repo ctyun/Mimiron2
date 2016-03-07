@@ -12,11 +12,6 @@ const Topbar = React.createClass({
         title:"电信云公司业务系统",
       }
   },
-  getInitialState() {
-    return {
-      current: '1'
-    };
-  },
   render() {
     let userDropdown= (<Menu>
       <Menu.Item key="0">

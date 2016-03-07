@@ -162,5 +162,5 @@ let Demo = React.createClass({
   }
 });
 
-ReactDOM.render(<Demo />, document.getElementById('current-page'));
+ReactDOM.render(<Demo />, document.getElementById('page-wrapper'));
 

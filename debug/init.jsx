@@ -18,73 +18,76 @@ const TableRaw = mimiron2.TableRaw;
 const Table = mimiron2.Table;
 const Ajax = mimiron2.Ajax;
 
-window.mimiron2.RouteConfig = {
-  "./debug/base-demo.jsx":/\/basedemo$/ig,
-  "./debug/bss-demo.jsx":/\/bssdemo$/ig
-};
+const Init = React.createClass({
+    displayName: 'Init',
+    local:{
+        sidebarList:[{
+            "id": "e8f65eec69cf402aa3ee8828ed4c4dc3",
+            "name": "组件展示",
+            "url": "",
+            "parentId": "-1",
+            "level": null,
+            "children": [{
+                "id": "099f747e454a417a92d76b62c022bb5d",
+                "name": "基本组件展示",
+                "url": "/basedemo",
+                "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
+                "level": null,
+                "children": [],
+                "btnRight": {}
+            }, {
+                "id": "099f747e454a417a92d76b62c022bb55",
+                "name": "业务组件展示",
+                "url": "/bssdemo",
+                "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
+                "level": null,
+                "children": [],
+                "btnRight": {}
+            }],
+            "btnRight": {}
+        }, {
+            "id": "e8f65eec69cf402aa3ee8828ed4c4dc3",
+            "name": "其他菜单",
+            "url": "",
+            "parentId": "-1",
+            "level": null,
+            "children": [{
+                "id": "099f747e454a417a92d76b62c022bb5d",
+                "name": "点我没用",
+                "url": "/dummy1",
+                "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
+                "level": null,
+                "children": [],
+                "btnRight": {}
+            }, {
+                "id": "099f747e454a417a92d76b62c022bb55",
+                "name": "点我没用",
+                "url": "/dummy2",
+                "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
+                "level": null,
+                "children": [],
+                "btnRight": {}
+            }, {
+                "id": "099f747e454a417a92d76b62c022bb55",
+                "name": "点我没用",
+                "url": "/dummy3",
+                "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
+                "level": null,
+                "children": [],
+                "btnRight": {}
+            }],
+            "btnRight": {}
+        }]
+    },
+    render(){
+        return(
+            <Page sidebarList={this.local.sidebarList}>
+                <div id="page-wrapper"></div>
+            </Page>
+        );
+    }
+});
+//注意, 这个组件可以被render到任意名称的DOM节点, 除了current-page
 
-const sidebarList=[{
-    "id": "e8f65eec69cf402aa3ee8828ed4c4dc3",
-    "name": "组件展示",
-    "url": "",
-    "parentId": "-1",
-    "level": null,
-    "children": [{
-        "id": "099f747e454a417a92d76b62c022bb5d",
-        "name": "基本组件展示",
-        "url": "/basedemo",
-        "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
-        "level": null,
-        "children": [],
-        "btnRight": {}
-    }, {
-        "id": "099f747e454a417a92d76b62c022bb55",
-        "name": "业务组件展示",
-        "url": "/bssdemo",
-        "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
-        "level": null,
-        "children": [],
-        "btnRight": {}
-    }],
-    "btnRight": {}
-}, {
-    "id": "e8f65eec69cf402aa3ee8828ed4c4dc3",
-    "name": "其他菜单",
-    "url": "",
-    "parentId": "-1",
-    "level": null,
-    "children": [{
-        "id": "099f747e454a417a92d76b62c022bb5d",
-        "name": "点我没用",
-        "url": "/dummy1",
-        "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
-        "level": null,
-        "children": [],
-        "btnRight": {}
-    }, {
-        "id": "099f747e454a417a92d76b62c022bb55",
-        "name": "点我没用",
-        "url": "/dummy2",
-        "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
-        "level": null,
-        "children": [],
-        "btnRight": {}
-    }, {
-        "id": "099f747e454a417a92d76b62c022bb55",
-        "name": "点我没用",
-        "url": "/dummy3",
-        "parentId": "e8f65eec69cf402aa3ee8828ed4c4dc3",
-        "level": null,
-        "children": [],
-        "btnRight": {}
-    }],
-    "btnRight": {}
-}]
-
-ReactDOM.render(
-  <Page sidebarList={sidebarList}>
-    <div id="current-page"></div>
-  </Page>,
-  document.getElementById('main')
-);
+ReactDOM.render(<Init />, document.getElementById('main'));
 
