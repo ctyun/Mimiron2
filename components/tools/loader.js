@@ -12,6 +12,9 @@ let Loader={
     },
 	loadUrl(url) { //根据url进行加载资源
 		window.location.hash = url;
+        if(url[0] == "#"){ //某些版本的IE window.location.hash返回#
+            url = url.substring(1, url.length);
+        }
 		if(!window.mimiron2.RouteConfig){
 			console.info(`请先定义window.mimiron2.RouteConfig`);
 			return
@@ -23,13 +26,20 @@ let Loader={
                 return 
             }
         }
+        for(let i in RouteConfig){ //如果不重复一次, 有时候会找不到, 原因尚不明确.
+            if(RouteConfig[i].test(url)){
+                this.loadJSX(i);
+                return 
+            }
+        }
+        alert(`无权限访问 ${url} .`);
         console.info(`url ${url} 没有注册.`);
 	},
 	loadJSX(path) { //根据路径加载jsx文件
         if(window.mimiron2.compiled){
             path = path.replace(".jsx",".js");
             // 这里需要约束所有jsx页面全部渲染到DOM id= page-wrapper
-            $("#page-wrapper").html('<div class="ant-spin ant-spin-lg ant-spin-spining page-loading"><span class="ant-spin-dot ant-spin-dot-first"></span><span class="ant-spin-dot ant-spin-dot-second"></span><span class="ant-spin-dot ant-spin-dot-third"></span></div>'); //加载动画效果
+            $("#page-wrapper").html('<div class="la-anim-10 la-animate"></div>'); //加载动画效果
             let scripts = document.getElementsByTagName('script')
             //先删除其他无用的jsx, 在同步加载多个jsx时, 可能有些jsx还没加载完.
             for (let i = 0; i < scripts.length; i++) {
@@ -54,8 +64,8 @@ let Loader={
           return;
         }
         // 这里需要约束所有jsx页面全部渲染到DOM id= page-wrapper
-        $("#page-wrapper").html('<div class="ant-spin ant-spin-lg ant-spin-spining page-loading"><span class="ant-spin-dot ant-spin-dot-first"></span><span class="ant-spin-dot ant-spin-dot-second"></span><span class="ant-spin-dot ant-spin-dot-third"></span></div>'); //加载动画效果
-        let scripts = document.getElementsByTagName('script')
+        $("#page-wrapper").html('<div class="la-anim-10 la-animate"></div>'); //加载动画效果
+        let scripts = document.getElementsByTagName('script');
         //先删除其他无用的jsx, 在同步加载多个jsx时, 可能有些jsx还没加载完.
         for (let i = 0; i < scripts.length; i++) {
           if (/^text\/babel(;|$)/.test(scripts.item(i).type)&&scripts.item(i).src.indexOf("?only")!=-1) {

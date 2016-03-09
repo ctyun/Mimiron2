@@ -85,7 +85,7 @@ let Query = React.createClass({
 					  <Row>
 					    <Col span="8" offset="16" style={{ textAlign: 'right' }}>
 					      <Button type="primary" htmlType="submit">{this.props.submitName}</Button>
-					      <Button type="ghost" onClick={()=>{document.getElementById(this.props.id).reset(); this.setState({formData:{}});this.props.form.resetFields();}}>清除条件</Button>
+					      
 					    </Col>
 					  </Row>
 					</Form>
@@ -98,3 +98,5 @@ let Query = React.createClass({
 Query = createForm()(Query);
 
 export default Query;
+
+//<Button type="ghost" onClick={()=>{document.getElementById(this.props.id).reset(); this.setState({formData:{}});this.props.form.resetFields();}}>清除条件</Button>
