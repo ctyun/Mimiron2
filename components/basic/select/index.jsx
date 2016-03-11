@@ -33,8 +33,8 @@ const AntSelect = React.createClass({
     let data=[];
     if (this.props.data){
       for(let i in this.props.data){
-        if(this.props.data[i].value){
-          data.push(<Option value={this.props.data[i].value} {...this.props.data[i].extra}> {this.props.data[i].text} </Option>);
+        if(typeof this.props.data[i].value != "undefined"){
+          data.push(<Option value={this.props.data[i].value} disabled={this.props.data[i].disabled?true:false} {...this.props.data[i].extra}> {this.props.data[i].text} </Option>);
         } else{
           data.push(<Option value={i}>{this.props.data[i]}</Option>);
         }

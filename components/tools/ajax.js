@@ -10,10 +10,12 @@ let Ajax = {
 			contentType:"application/json",
 			dataType: 'json',
 			success: data => {
+				// 取消css效果
+				--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
 				func(data);
 			},
 			error: this.onError,
-			complete: this.onComplete,
+			complete: () => {}, //注意, 不能在complete中调用取消css的方法,因为func(data)可能报错.
 		})
 	},
 	post: function(url, params, func) {
@@ -25,10 +27,12 @@ let Ajax = {
         	contentType:"application/json",
         	dataType: 'json',
         	success: data => {
+        		// 取消css效果
+				--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
 				func(data);
 			},
 			error: this.onError,
-			complete: this.onComplete,
+			complete: () => {},
 		})
 	},
 	showLoading : function(){
@@ -37,12 +41,9 @@ let Ajax = {
 		$("#ajax-loading")? $("#ajax-loading").addClass("la-animate"): null;
 	},
 	onError: function(obj, msg, e) {
-		console.log(obj, msg, e);
-	},
-	onComplete: function() {
 		// 取消css效果
 		--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
-	}
+	},
 }
 
 export default Ajax

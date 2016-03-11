@@ -44,7 +44,6 @@ const Sidebar = React.createClass({
     let toRender = null;
     if(this.props.list && this.props.list.length>0)
       toRender = createNode(this.props.list);
-    console.log(toRender);
     return (
       <Menu onClick={this.handleClick}
         style={{ "width": "15%", "float":"left","minHeight":"600px" }}

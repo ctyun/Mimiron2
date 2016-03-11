@@ -56,6 +56,7 @@ let Table = React.createClass({
 				<div className="row">
 					<TableRaw 
 						bordered 
+						rowSelection={this.props.rowSelection}
 						loading={this.state.isLoading}
 						columns={this.state.columns} 
 						dataSource={this.props.data} 
