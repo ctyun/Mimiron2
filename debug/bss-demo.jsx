@@ -117,7 +117,7 @@ let Demo = React.createClass({
           <Input name="input1" placeholder="请输入搜索名称" label="搜索名称：" />
           <Input name="input2" placeholder="请输入搜索名称" label="搜索名称：" onChange={this.InputChange}/>
           <Input name="input3" placeholder="请输入搜索名称" label="搜索名称：" />
-          <Select combobox size="large"
+          <Select combobox size="large" 
             name="input4"
             onChange={this.handleSelectChange}
             filterOption={false}
@@ -125,14 +125,14 @@ let Demo = React.createClass({
             label="提示输入：">
             {this.state.options}
           </Select>
-          <Select name="input5" label="选择框：" size="large" defaultValue="lucy">
+          <Select name="input5" labelName="选择框：" size="large" defaultValue="lucy">
             <Option value="jack">Jack</Option>
             <Option value="lucy">Lucy</Option>
             <Option value="disabled" disabled>Disabled</Option>
             <Option value="yiminghe">yiminghe</Option>
           </Select>
           <DatePicker name="input6" label="日期选择：" defaultValue="2015/01/01" format="yyyy/MM/dd" />
-          <Select name="input7" label="另一种选择框：" data={{"1":"yi","2":"er"}} />
+          <Select name="input7" labelName="另一种选择框：" data={{"1":"yi","2":"er"}} />
         </Query>
       </Show>
       <Show name="表格">

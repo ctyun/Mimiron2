@@ -9,24 +9,23 @@ import Button from "../basic/button";
 import QueueAnim from "../basic/queue-anim";
 import Icon from "../basic/icon";
 
-function noop() {
-}
-
 let Query = React.createClass({
-	getInitialState: function(){
+	getInitialState() {
 		return{
 			formData:this.props.formData
 		}
 	},
-	getDefaultProps: function(){
+	getDefaultProps() {
 		return{
 			formData: {},
 			submitName: "查询",
-			id: "query-from-default-id",
 			onSubmit: formData => {console.log(formData)},
 		}
 	},
-	setValue: function(func,name,e){
+	componentWillMount(){
+		this.handleClear() //立即重置表单, 获得表单默认值.
+	},
+	setValue(func,name,e) {
 		let formData = this.state.formData;
 		let value = e.target? e.target.value: e; //Input 传入的是e, select传入的是value
 		formData[name] = value;
@@ -34,12 +33,22 @@ let Query = React.createClass({
 		if(func)
 			func(value);
 	},
-	handleSubmit: function(e){
+	handleSubmit(e) {
 		e.preventDefault();
 		this.props.onSubmit(this.state.formData);
-    	//console.log('收到表单值：', this.props.form.getFieldsValue());
 	},
-	render: function(){
+	handleClear (e){
+		if(e) e.preventDefault();
+		let formData={};
+		let children = this.props.children;
+		for(let i in children){
+			if(children[i]){
+				formData[children[i].props["name"]] = children[i].props["defaultValue"]?children[i].props["defaultValue"]:null;
+			}
+		}
+		this.setState({formData:formData});
+	},
+	render() {
 		let formData = this.state.formData;
 		let formEntity = [];
 		let children;
@@ -48,15 +57,15 @@ let Query = React.createClass({
 		} else{
 			children = this.props.children;
 		}
-		for(let i in children){
+		for(let i in children){ //遍历组件, 在这里将所有children变成受控组件.
 			if(children[i]){
 				let childName = children[i].props["name"];
 				let injectProps = {
 					onChange: this.setValue.bind(null, children[i].props["onChange"],
 						children[i].props["name"])
 				}
-				if(this.state.formData.childName){
-					injectProps["value"] = this.state.formData.childName
+				if(this.state.formData[childName]){ //注意, 这里不能使用this.state.formData.childName
+					injectProps["value"] = this.state.formData[childName];
 				}
 				let child = React.cloneElement(children[i],injectProps);
 				formEntity.push(<Col span="8" key={i}>
@@ -78,14 +87,14 @@ let Query = React.createClass({
 		        </p>
 		        <QueueAnim delay={100} type={["top"]} style={{paddingRight:15}}>
 		        	{this.state.show ? [
-					<Form horizontal onSubmit={this.handleSubmit} id={this.props.id} key="dummy">
+					<Form horizontal key="dummy">
 					  <Row>
 					    {formEntity}
 					  </Row>
 					  <Row>
 					    <Col span="8" offset="16" style={{ textAlign: 'right' }}>
-					      <Button type="primary" htmlType="submit">{this.props.submitName}</Button>
-					      
+					    	<Button type="ghost" onClick={this.handleClear}>清除条件</Button>
+					    	<Button type="primary" onClick={this.handleSubmit}>{this.props.submitName}</Button>
 					    </Col>
 					  </Row>
 					</Form>
@@ -95,8 +104,7 @@ let Query = React.createClass({
 	}
 });
 
-Query = createForm()(Query);
+//Query = createForm()(Query);
 
 export default Query;
 
-//<Button type="ghost" onClick={()=>{document.getElementById(this.props.id).reset(); this.setState({formData:{}});this.props.form.resetFields();}}>清除条件</Button>
