@@ -65,8 +65,8 @@ const Mimiron2 = {
   Misc: require("./tools/misc"),
 };
 
-Mimiron2.version = require('../package.json').version;
+mimiron2.version = require('../package.json').version;
 
 const ReactVersion = React.version;
 
-module.exports = Mimiron2;
+module.exports = mimiron2;

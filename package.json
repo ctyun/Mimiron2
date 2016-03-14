@@ -21,9 +21,9 @@
   "bugs": {
     "url": "https://github.com/ant-design/ant-design/issues"
   },
-  "main": "lib/index",
+  "main": "components/index",
   "files": [
-    "lib",
+    "components",
     "style"
   ],
   "license": "MIT",
