@@ -2,9 +2,11 @@ import React from 'react';
 import Tooltip from 'rc-tooltip';
 import Icon from '../icon';
 import Button from '../button';
+import getPlacements from '../popover/placements';
 
+const placements = getPlacements();
 const prefixCls = 'ant-popover';
-const noop = function() {};
+const noop = function () {};
 const transitionNames = {
   top: 'zoom-down',
   bottom: 'zoom-up',
@@ -54,39 +56,43 @@ export default React.createClass({
   },
   onVisibleChange(visible) {
     this.setVisible(visible);
-    this.props.onVisibleChange(visible);
   },
   setVisible(visible) {
     if (!('visible' in this.props)) {
       this.setState({ visible });
     }
+    this.props.onVisibleChange(visible);
   },
   render() {
-    const {title, okText, cancelText, placement, overlayStyle, trigger} = this.props;
-    const overlay = <div>
-      <div className={prefixCls + '-content'}>
-        <p className={prefixCls + '-message'}>
-          <Icon type="exclamation-circle" />
-          {title}
-        </p>
-        <div className={prefixCls + '-buttons'}>
-          <Button onClick={this.cancel} type="ghost" size="small">{cancelText}</Button>
-          <Button onClick={this.confirm} type="primary" size="small">{okText}</Button>
+    const { title, okText, cancelText, placement, overlayStyle, trigger, ...restProps } = this.props;
+    const overlay = (
+      <div>
+        <div className={`${prefixCls}-content`}>
+          <div className={`${prefixCls}-message`}>
+            <Icon type="exclamation-circle" />
+            <div className={`${prefixCls}-message-title`}>{title}</div>
+          </div>
+          <div className={`${prefixCls}-buttons`}>
+            <Button onClick={this.cancel} type="ghost" size="small">{cancelText}</Button>
+            <Button onClick={this.confirm} type="primary" size="small">{okText}</Button>
+          </div>
         </div>
       </div>
-    </div>;
+    );
 
     const transitionName = transitionNames[placement];
 
     return (
-      <Tooltip placement={placement}
-               overlayStyle={overlayStyle}
-               prefixCls={prefixCls}
-               onVisibleChange={this.onVisibleChange}
-               transitionName={transitionName}
-               visible={this.state.visible}
-               trigger={trigger}
-               overlay={overlay}>
+      <Tooltip {...restProps}
+        placement={placement}
+        builtinPlacements={placements}
+        overlayStyle={overlayStyle}
+        prefixCls={prefixCls}
+        onVisibleChange={this.onVisibleChange}
+        transitionName={transitionName}
+        visible={this.state.visible}
+        trigger={trigger}
+        overlay={overlay}>
         {this.props.children}
       </Tooltip>
     );

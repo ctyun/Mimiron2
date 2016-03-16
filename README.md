@@ -18,8 +18,14 @@ Mimiron2经过打包之后得到一个js文件, 一个css文件, 之间引入HTM
 ### Tips
 
 1. 在webpack中公用一个entry会导致无法暴露output.library中的元素.
+1. 基于ant design V0.12.11-beta.
+1. 支持React正常用法.
 
 
 ### 基本元素的样式修改
 
 1. btn: margin:0, 5px
+
+### FIXME 
+
+1. 目前直接修改了Select和Table的源码(依旧使用V0.19), 为了支持data(object)直接初始化, 其实应该在business中包装一层, 除非迫不得已, 应该保证ant design组件的完整性, 以此保证可升级.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Dialog from 'rc-dialog';
 import { Dom } from 'rc-util';
 import Button from '../button';
@@ -8,7 +8,7 @@ function noop() {}
 let mousePosition;
 let mousePositionEventBinded;
 
-let AntModal = React.createClass({
+const AntModal = React.createClass({
   getDefaultProps() {
     return {
       prefixCls: 'ant-modal',
@@ -20,12 +20,27 @@ let AntModal = React.createClass({
       transitionName: 'zoom',
       maskAnimation: 'fade',
       confirmLoading: false,
-      visible: false
+      visible: false,
     };
   },
 
-  handleCancel() {
-    this.props.onCancel();
+  propTypes: {
+    prefixCls: PropTypes.string,
+    onOk: PropTypes.func,
+    onCancel: PropTypes.func,
+    okText: PropTypes.node,
+    cancelText: PropTypes.node,
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    confirmLoading: PropTypes.bool,
+    visible: PropTypes.bool,
+    align: PropTypes.object,
+    footer: PropTypes.node,
+    title: PropTypes.node,
+    closable: PropTypes.bool,
+  },
+
+  handleCancel(e) {
+    this.props.onCancel(e);
   },
 
   handleOk() {
@@ -37,7 +52,7 @@ let AntModal = React.createClass({
       return;
     }
     // 只有点击事件支持从鼠标位置动画展开
-    Dom.addEventListener(document.body, 'click', function onDocumentMousemove(e) {
+    Dom.addEventListener(document.documentElement, 'click', (e) => {
       mousePosition = {
         x: e.pageX,
         y: e.pageY
@@ -68,8 +83,10 @@ let AntModal = React.createClass({
       </Button>
     ];
     let footer = props.footer || defaultFooter;
-    return <Dialog onClose={this.handleCancel} footer={footer} {...props}
-      visible={props.visible} mousePosition={mousePosition} />;
+    return (
+      <Dialog onClose={this.handleCancel} footer={footer} {...props}
+        visible={props.visible} mousePosition={mousePosition} />
+    );
   }
 });
 

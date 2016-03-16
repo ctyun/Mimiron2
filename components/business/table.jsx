@@ -17,6 +17,7 @@ let Table = React.createClass({
 			pageNo:1,
 			totalRows:0,
 			checkType:"none",
+			turnable:true,
 		}
 	},
 	getInitialState: function(){
@@ -62,6 +63,7 @@ let Table = React.createClass({
 						dataSource={this.props.data} 
 						pagination={false} />
 				</div>
+				{this.props.turnable?
 				<div className="row" style={{"marginTop":"5px"}}>
 					<Pagination style={{"float":"right"}}
 						showSizeChanger 
@@ -73,6 +75,7 @@ let Table = React.createClass({
 						defaultCurrent={this.state.pageNo} 
 						total={this.props.totalRows} />
 				</div>
+				:null}
 			</div>)
 	}
 });

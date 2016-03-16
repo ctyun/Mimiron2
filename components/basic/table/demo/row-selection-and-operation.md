@@ -4,8 +4,6 @@
 
 选择后进行操作，完成后清空选择，通过 `rowSelection.selectedRowKeys` 来控制选中项。
 
-此版本换页后将会清空选中。
-
 ---
 
 ````jsx
@@ -26,16 +24,16 @@ const data = [];
 for (let i = 0; i < 46; i++) {
   data.push({
     key: i,
-    name: '李大嘴' + i,
+    name: `李大嘴${i}`,
     age: 32,
-    address: '西湖区湖底公园' + i + '号'
+    address: `西湖区湖底公园${i}号`
   });
 }
 
 const App = React.createClass({
   getInitialState() {
     return {
-      selectedRowKeys: [],
+      selectedRowKeys: [],  // 这里配置默认勾选列
       loading: false,
     };
   },
@@ -60,14 +58,16 @@ const App = React.createClass({
       onChange: this.onSelectChange,
     };
     const hasSelected = selectedRowKeys.length > 0;
-    return <div>
-      <div style={{marginBottom: 16}}>
-         <Button type="primary" onClick={this.start}
-           disabled={!hasSelected} loading={loading}>操作</Button>
-         <span style={{marginLeft: 8}}>{hasSelected ? `选择了 ${selectedRowKeys.length} 个对象` : ''}</span>
+    return (
+      <div>
+        <div style={{ marginBottom: 16 }}>
+           <Button type="primary" onClick={this.start}
+             disabled={!hasSelected} loading={loading}>操作</Button>
+           <span style={{ marginLeft: 8 }}>{hasSelected ? `选择了 ${selectedRowKeys.length} 个对象` : ''}</span>
+        </div>
+        <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
-    </div>;
+    );
   }
 });
 

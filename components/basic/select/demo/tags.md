@@ -17,13 +17,13 @@ for (let i = 10; i < 36; i++) {
 }
 
 function handleChange(value) {
-  console.log('selected ' + value);
+  console.log(`selected ${value}`);
 }
 
 ReactDOM.render(
   <Select tags
-   style={{width: '100%'}}
-   searchPlaceholder="标签模式"
+    style={{ width: '100%' }}
+    searchPlaceholder="标签模式"
     onChange={handleChange}>
     {children}
   </Select>

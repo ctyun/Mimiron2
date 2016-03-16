@@ -1,12 +1,14 @@
 import React from 'react';
 import Tooltip from 'rc-tooltip';
+import getPlacements from './placements';
 
+const placements = getPlacements();
 const prefixCls = 'ant-popover';
 
 const Popover = React.createClass({
   getDefaultProps() {
     return {
-      prefixCls: prefixCls,
+      prefixCls,
       placement: 'top',
       trigger: 'hover',
       mouseEnterDelay: 0.1,
@@ -33,9 +35,10 @@ const Popover = React.createClass({
 
     return (
       <Tooltip transitionName={transitionName}
-               ref="tooltip"
-               {...this.props}
-               overlay={this.getOverlay()}>
+        builtinPlacements={placements}
+        ref="tooltip"
+        {...this.props}
+        overlay={this.getOverlay()}>
         {this.props.children}
       </Tooltip>
     );
@@ -46,12 +49,14 @@ const Popover = React.createClass({
   },
 
   getOverlay() {
-    return <div>
-      {this.props.title && <div className={prefixCls + '-title'}>{this.props.title}</div>}
-      <div className={prefixCls + '-content'}>
-        {this.props.overlay}
+    return (
+      <div>
+        {this.props.title && <div className={`${prefixCls}-title`}>{this.props.title}</div>}
+        <div className={`${prefixCls}-content`}>
+          {this.props.overlay}
+        </div>
       </div>
-    </div>;
+    );
   },
 });
 

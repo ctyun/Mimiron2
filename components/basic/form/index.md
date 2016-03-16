@@ -41,6 +41,8 @@
 
 ### Form
 
+更多示例参考 [rc-form](http://react-component.github.io/form/)。
+
 | 参数      | 说明                                     | 类型       |  可选值 |默认值 |
 |-----------|------------------------------------------|------------|-------|--------|
 |  form | 经 `Form.create()` 包装过的组件会自带 `this.props.form` 属性，直接传给 Form 即可 | object | | 无 |
@@ -78,8 +80,8 @@ CustomizedForm = Form.create({})(CustomizedForm);
 | validateFieldsAndScroll | 与 `validateFields` 相似，但校验完后，如果校验不通过的菜单域不在可见范围内，则自动滚动进可见范围 | 参考 `validateFields` | | |
 | getFieldError | 获取某个输入控件的 Error | Function(name) | | |
 | isFieldValidating | 判断一个输入控件是否在校验状态 | Function(name) | | |
-| resetFields | 重置一组输入控件的值与状态，如不传入参数，则重置所有组件 | Function([names: string[]]) | | | |
-| getFieldProps 详见下面描述
+| resetFields | 重置一组输入控件的值与状态，如不传入参数，则重置所有组件 | Function([names: string[]]) | | |
+| getFieldProps 详见下面描述 | | | | |
 
 #### this.props.form.getFieldProps(id, options)
 
@@ -101,6 +103,7 @@ CustomizedForm = Form.create({})(CustomizedForm);
 |  labelCol | label 标签布局，通 `<Col>` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` | object |  |  |
 |  wrapperCol | 需要为输入控件设置布局样式时，使用该属性，用法同 labelCol | object |  |  |
 |  help | 提示信息，如不设置，则会根据校验规则自动生成 | string |  |   |
+|  extra | 额外的提示信息，和 help 类似，当需要错误信息和提示文案同时出现时，可以使用这个。 | string |  |   |
 |  required | 是否必填，如不设置，则会根据校验规则自动生成 | bool |  | false  |
 |  validateStatus | 校验状态，如不设置，则会根据校验规则自动生成 | string | 'success' 'warning' 'error' 'validating'  |   |
 |  hasFeedback | 配合 validateStatus 属性使用，是否展示校验状态图标 | bool |  | false  |

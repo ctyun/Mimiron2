@@ -10,6 +10,9 @@ import QueueAnim from "../basic/queue-anim";
 import Icon from "../basic/icon";
 
 let Query = React.createClass({
+	locals:{
+		show:false,
+	},
 	getInitialState() {
 		return{
 			formData:this.props.formData
@@ -23,33 +26,31 @@ let Query = React.createClass({
 		}
 	},
 	componentWillMount(){
+		this.locals.formData = this.props.formData || {};
 		this.handleClear() //立即重置表单, 获得表单默认值.
 	},
 	setValue(func,name,e) {
-		let formData = this.state.formData;
 		let value = e.target? e.target.value: e; //Input 传入的是e, select传入的是value
-		formData[name] = value;
-		this.setState({formData:formData});
+		this.locals.formData[name] = value;
 		if(func)
 			func(value);
 	},
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.onSubmit(this.state.formData);
+		this.props.onSubmit(this.locals.formData);
 	},
 	handleClear (e){
 		if(e) e.preventDefault();
 		let formData={};
 		let children = this.props.children;
 		for(let i in children){
-			if(children[i]){
+			if(children[i] && children[i].props){
 				formData[children[i].props["name"]] = children[i].props["defaultValue"]?children[i].props["defaultValue"]:null;
 			}
 		}
-		this.setState({formData:formData});
+		this.locals.formData = formData;
 	},
 	render() {
-		let formData = this.state.formData;
 		let formEntity = [];
 		let children;
 		if(!this.props.children.length){
@@ -64,8 +65,10 @@ let Query = React.createClass({
 					onChange: this.setValue.bind(null, children[i].props["onChange"],
 						children[i].props["name"])
 				}
-				if(this.state.formData[childName]){ //注意, 这里不能使用this.state.formData.childName
-					injectProps["value"] = this.state.formData[childName];
+				if(this.locals.formData[childName] && (this.locals.formData[childName]!=children[i].props["value"])){
+					this.locals.formData[childName] = children[i].props["value"];
+				} else if(this.locals.formData[childName]){ //注意, 这里不能使用this.locals.formData.childName
+					injectProps["value"] = this.locals.formData[childName];
 				}
 				let child = React.cloneElement(children[i],injectProps);
 				formEntity.push(<Col span="8" key={i}>

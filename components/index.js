@@ -4,7 +4,7 @@ require('es5-shim/es5-sham');
 const React=require('react');
 const ReactDOM=require('react-dom');
 
-const Mimiron2 = {
+const mimiron2 = {
   React: React,
   ReactDOM: ReactDOM,
   //基本组件

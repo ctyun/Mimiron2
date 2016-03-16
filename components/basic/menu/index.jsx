@@ -1,5 +1,5 @@
 import React from 'react';
-import Menu from 'rc-menu';
+import Menu, { Item, Divider, SubMenu, ItemGroup } from 'rc-menu';
 import animation from '../common/openAnimation';
 
 function noop() {
@@ -43,21 +43,21 @@ const AntMenu = React.createClass({
     let openAnimation = this.props.openAnimation || this.props.openTransitionName;
     if (!openAnimation) {
       switch (this.props.mode) {
-      case 'horizontal':
-        openAnimation = 'slide-up';
-        break;
-      case 'vertical':
-        openAnimation = 'zoom-big';
-        break;
-      case 'inline':
-        openAnimation = animation;
-        break;
-      default:
+        case 'horizontal':
+          openAnimation = 'slide-up';
+          break;
+        case 'vertical':
+          openAnimation = 'zoom-big';
+          break;
+        case 'inline':
+          openAnimation = animation;
+          break;
+        default:
       }
     }
 
     let props = {};
-    const className = this.props.className + ' ' + this.props.prefixCls + '-' + this.props.theme;
+    const className = `${this.props.className} ${this.props.prefixCls}-${this.props.theme}`;
     if (this.props.mode !== 'inline') {
       // 这组属性的目的是
       // 弹出型的菜单需要点击后立即关闭
@@ -80,9 +80,9 @@ const AntMenu = React.createClass({
   }
 });
 
-AntMenu.Divider = Menu.Divider;
-AntMenu.Item = Menu.Item;
-AntMenu.SubMenu = Menu.SubMenu;
-AntMenu.ItemGroup = Menu.ItemGroup;
+AntMenu.Divider = Divider;
+AntMenu.Item = Item;
+AntMenu.SubMenu = SubMenu;
+AntMenu.ItemGroup = ItemGroup;
 
 export default AntMenu;
