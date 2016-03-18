@@ -114,8 +114,18 @@ let Demo = React.createClass({
     <div className="row">
       <Show name="查询框">
         <Query>
-          <Input name="input1" placeholder="请输入搜索名称" label="搜索名称：" />
-          <Input name="input2" placeholder="请输入搜索名称" label="搜索名称：" onChange={this.InputChange}/>
+          <Input 
+            name="input1" 
+            placeholder="请输入搜索名称" 
+            label="搜索名称：" 
+            value={this.state.input1}
+            onChange={e => {this.setState({input1:e.target.value,input2:""})}}/>
+          <Input 
+            name="input2" 
+            placeholder="请输入搜索名称" 
+            label="搜索名称：" 
+            value={this.state.input2}
+            onChange={e => {this.setState({input2:e.target.value,input1:""})}}/>
           <Input name="input3" placeholder="请输入搜索名称" label="搜索名称：" />
           <Select combobox size="large" 
             name="input4"

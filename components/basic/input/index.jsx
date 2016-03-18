@@ -91,13 +91,11 @@ class Input extends React.Component {
       case 'textarea':
         return <textarea {...props} placeholder={placeholder} className={inputClassName} ref="input" />;
       default:
-        console.log(`最终渲染value ${props.value}`);
         return <input {...props} placeholder={placeholder} className={inputClassName} ref="input" />;
     }
   }
 
   render() {
-    console.log(`开始渲染value ${this.props.value}`);
     return this.renderLabledInput(this.renderInput());
   }
 }

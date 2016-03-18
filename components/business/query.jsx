@@ -10,9 +10,6 @@ import QueueAnim from "../basic/queue-anim";
 import Icon from "../basic/icon";
 
 let Query = React.createClass({
-	locals:{
-		show:false,
-	},
 	getInitialState() {
 		return{
 			formData:this.props.formData
@@ -23,21 +20,38 @@ let Query = React.createClass({
 			formData: {},
 			submitName: "查询",
 			onSubmit: formData => {console.log(formData)},
+			onReset: ()=>{},
 		}
 	},
 	componentWillMount(){
-		this.locals.formData = this.props.formData || {};
 		this.handleClear() //立即重置表单, 获得表单默认值.
 	},
+	componentWillReceiveProps(nextProps) {
+		let formData = this.state.formData;
+		let children;
+		if(!nextProps.children.length){
+			children = [nextProps.children];
+		} else{
+			children = nextProps.children;
+		}
+		for(let child of children){
+			if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
+				formData[child.props["name"]] = child.props["value"];
+			}
+		}
+		this.setState({formData:formData});
+	},
 	setValue(func,name,e) {
+		let formData = this.state.formData;
 		let value = e.target? e.target.value: e; //Input 传入的是e, select传入的是value
-		this.locals.formData[name] = value;
+		formData[name] = value;
+		this.setState({formData:formData});
 		if(func)
-			func(value);
+			func(e);
 	},
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.onSubmit(this.locals.formData);
+		this.props.onSubmit(this.state.formData);
 	},
 	handleClear (e){
 		if(e) e.preventDefault();
@@ -48,9 +62,11 @@ let Query = React.createClass({
 				formData[children[i].props["name"]] = children[i].props["defaultValue"]?children[i].props["defaultValue"]:null;
 			}
 		}
-		this.locals.formData = formData;
+		this.setState({formData:formData});
+		this.props.onReset(e);
 	},
 	render() {
+		let formData = this.state.formData;
 		let formEntity = [];
 		let children;
 		if(!this.props.children.length){
@@ -65,10 +81,8 @@ let Query = React.createClass({
 					onChange: this.setValue.bind(null, children[i].props["onChange"],
 						children[i].props["name"])
 				}
-				if(this.locals.formData[childName] && (this.locals.formData[childName]!=children[i].props["value"])){
-					this.locals.formData[childName] = children[i].props["value"];
-				} else if(this.locals.formData[childName]){ //注意, 这里不能使用this.locals.formData.childName
-					injectProps["value"] = this.locals.formData[childName];
+				if(1){ //注意, 这里不能使用this.state.formData.childName
+					injectProps["value"] = this.state.formData[childName];
 				}
 				let child = React.cloneElement(children[i],injectProps);
 				formEntity.push(<Col span="8" key={i}>
