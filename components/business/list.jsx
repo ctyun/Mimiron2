@@ -14,14 +14,13 @@ let List = React.createClass({
 		for(let i in this.props.data){
 			toReturn.push(
 				<Row key={dummyKey++}>
-			      <Col span="11" style={{textAlign:"right"}}>{i}</Col>
-			      <Col span="2"> &nbsp;&nbsp; </Col>
-			      <Col span="11" style={{textAlign:"left"}}>{this.props.data[i]}</Col>
+			      <Col span="12" style={{textAlign:"right"}}>{i+":"} &nbsp;</Col>
+			      <Col span="12" style={{textAlign:"left"}}>&nbsp;{this.props.data[i]}</Col>
 			    </Row>
 			);
 		}
 		return(
-			<div>{toReturn}</div>
+			<div style={{"marginBottom":10}}>{toReturn}</div>
 			);
 	}
 });
