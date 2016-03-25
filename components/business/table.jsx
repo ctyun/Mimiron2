@@ -61,7 +61,10 @@ let Table = React.createClass({
 						loading={this.state.isLoading}
 						columns={this.state.columns} 
 						dataSource={this.props.data} 
-						pagination={false} />
+						pagination={false} 
+						size = {this.props.size}
+						expandedRowRender = {this.props.expandedRowRender}
+						onRowClick = {this.props.onRowClick}/>
 				</div>
 				{this.props.turnable?
 				<div className="row" style={{"marginTop":"5px"}}>

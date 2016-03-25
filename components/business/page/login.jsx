@@ -82,36 +82,35 @@ const Login = React.createClass({
 				<div key="dummy-title" style={{margin:"20", fontSize:"20", textAlign:"center"}}>
 					<p className="ant-form-text">{this.props.title}</p>
 				</div>,
-	      <FormItem
-	      	key="dummy-username"
-	        label="用户名："
-	        labelCol={{ span: 8 }}
-	        wrapperCol={{ span: 8 }}>
-	        <Input  
-	        	placeholder="请输入用户名" 
-	        	addonAfter={<Icon type="user" />} 
-	        	onChange={this.setValue.bind(this, null, "userLoginName")}/>
-	      </FormItem>,
-	      <FormItem
-	      	key="dummy-password"
-	        label="密码："
-	        labelCol={{ span: 8 }}
-	        wrapperCol={{ span: 8 }}>
-	        <Input type="password"
-	        	placeholder="请输入密码" 
-	        	addonAfter={<Icon type="lock" />} 
-	        	onChange={this.setValue.bind(this, null, "userPassword")}/>
-	      </FormItem>,
-	      formEntity,
-	      <Row key="dummy-btn">
-	        <Col span="8" offset="8">
-	          <Button type="primary" htmlType="submit">登陆</Button>
-	        </Col>
-	      </Row>
-	      ]:null}
-	    </Anim>
-    </Form>
-		)
+				<FormItem
+					key="dummy-username"
+					label="用户名："
+					labelCol={{ span: 8 }}
+					wrapperCol={{ span: 8 }}>
+				<Input  
+					placeholder="请输入用户名" 
+					addonAfter={<Icon type="user" />} 
+					onChange={this.setValue.bind(this, null, "userLoginName")}/>
+				</FormItem>,
+				<FormItem
+					key="dummy-password"
+					label="密码："
+					labelCol={{ span: 8 }}
+					wrapperCol={{ span: 8 }}>
+				<Input type="password"
+					placeholder="请输入密码" 
+					addonAfter={<Icon type="lock" />} 
+					onChange={this.setValue.bind(this, null, "userPassword")}/>
+				</FormItem>,
+				formEntity,
+				<Row key="dummy-btn">
+				<Col span="8" offset="8">
+				  <Button type="primary" htmlType="submit">登陆</Button>
+				</Col>
+				</Row>
+				]:null}
+			</Anim>
+		</Form>)
 	}
 })
 
