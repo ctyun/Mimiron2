@@ -294,6 +294,7 @@ const Resource=React.createClass({
 ```
 
 属性:
+
 | 属性(prop) | 默认值 | 说明  |
 | --- | --- | --- |
 | data | null | 列表数据 |
