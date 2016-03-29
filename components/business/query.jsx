@@ -35,7 +35,7 @@ let Query = React.createClass({
 			children = nextProps.children;
 		}
 		for(let child of children){
-			if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
+			if(child && (child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]])){
 				formData[child.props["name"]] = child.props["value"];
 			}
 		}
