@@ -17,6 +17,9 @@ const RadioGroup = Radio.Group;
 const TableRaw = mimiron2.TableRaw;
 const Table = mimiron2.Table;
 const Ajax = mimiron2.Ajax;
+const Input = mimiron2.Input;
+const InputGroup = Input.Group;
+const Select = mimiron2.Select;
 
 class Show extends React.Component{
   render() {
@@ -121,6 +124,7 @@ let Demo = React.createClass({
       totalRows:this.state.table.totalRows,
       checkType:"none",
     };
+    const sel = <Select defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} />;
     return (<div>
     <div className="row">
       <Show name="按钮">
@@ -139,6 +143,24 @@ let Demo = React.createClass({
       </Show>
       <Show name="多选框">
         <CheckboxGroup options={['Apple', 'Pear', 'Orange']} defaultValue={['Apple']} onChange={this.checkboxChange} />
+      </Show>
+      <Show name="带条件输入">
+        <Input id="site4" placeholder="金额" size="large" addonBefore={sel} style={{"width":200}}/>
+        <br/>
+        <InputGroup style={{"width":200}}>
+          <Input id="site4" placeholder="金额" size="large" />
+          <div className="ant-input-group-wrap">{sel}</div>
+        </InputGroup>
+        <br/>
+        <InputGroup style={{"width":200}}>
+          <div className="ant-input-group-wrap">{sel}</div>
+          <Input id="site4" placeholder="金额" size="large" />
+        </InputGroup>
+        <br />
+        <span style={{"width":200}}>
+          <Select defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} size="large"/>
+          <Input id="site4" placeholder="金额" size="large" style={{"width":170}}/>
+        </span>
       </Show>
       <Show name="单选框">
         <RadioGroup onChange={this.radioChange} value={this.state.radioValue}>

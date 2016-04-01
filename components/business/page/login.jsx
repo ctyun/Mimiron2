@@ -43,37 +43,40 @@ const Login = React.createClass({
 	render() {
 		let formEntity = [];
 		let keycnt=0;
-		if(this.props.children.length){  //好像children仅有一个的时候, 就不是list, 而直接是child这个element了
-			for(let child of this.props.children){
+		if(this.props.children){
+			if(this.props.children.length){  //好像children仅有一个的时候, 就不是list, 而直接是child这个element了
+				for(let child of this.props.children){
+					let childElement = React.cloneElement(child,
+						{onChange: this.setValue.bind(null, child.props["onChange"],
+							child.props["name"])});  //注意! 这里的label将被渲染为defaultText
+					formEntity.push(
+						<FormItem
+								key= {"dummy-"+ keycnt++}
+				        label={child.props["labelText"] || "请输入 : "}
+				        labelCol={{ span: 10 }}
+				        wrapperCol={{ span: 14 }}>
+				        {childElement}
+				    </FormItem>
+					);
+				}
+			} else {
+				let child = this.props.children;
 				let childElement = React.cloneElement(child,
 					{onChange: this.setValue.bind(null, child.props["onChange"],
 						child.props["name"])});  //注意! 这里的label将被渲染为defaultText
+
 				formEntity.push(
 					<FormItem
-							key= {"dummy-"+ keycnt++}
+							key= {"dummy-addon"}
 			        label={child.props["labelText"] || "请输入 : "}
-			        labelCol={{ span: 10 }}
-			        wrapperCol={{ span: 14 }}>
+			        labelCol={{ span: 8 }}
+			        wrapperCol={{ span: 8 }}>
 			        {childElement}
 			    </FormItem>
 				);
 			}
-		} else {
-			let child = this.props.children;
-			let childElement = React.cloneElement(child,
-				{onChange: this.setValue.bind(null, child.props["onChange"],
-					child.props["name"])});  //注意! 这里的label将被渲染为defaultText
-
-			formEntity.push(
-				<FormItem
-						key= {"dummy-addon"}
-		        label={child.props["labelText"] || "请输入 : "}
-		        labelCol={{ span: 8 }}
-		        wrapperCol={{ span: 8 }}>
-		        {childElement}
-		    </FormItem>
-			);
 		}
+		
 		
 		return(
 		<Form horizontal onSubmit={this.onSubmit} style={{}}>

@@ -1,0 +1,11 @@
+/*在input组件中支持addonBefore输入Select*/
+.ant-input-group-addon:first-child{
+	padding: 0 !important;
+	border: none !important;
+}
+.ant-input-group-addon>.ant-select>.ant-select-selection{
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+	border-top-left-radius: 6px !important;
+	border-bottom-left-radius: 6px !important;
+}	
