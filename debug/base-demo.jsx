@@ -146,21 +146,6 @@ let Demo = React.createClass({
       </Show>
       <Show name="带条件输入">
         <Input id="site4" placeholder="金额" size="large" addonBefore={sel} style={{"width":200}}/>
-        <br/>
-        <InputGroup style={{"width":200}}>
-          <Input id="site4" placeholder="金额" size="large" />
-          <div className="ant-input-group-wrap">{sel}</div>
-        </InputGroup>
-        <br/>
-        <InputGroup style={{"width":200}}>
-          <div className="ant-input-group-wrap">{sel}</div>
-          <Input id="site4" placeholder="金额" size="large" />
-        </InputGroup>
-        <br />
-        <span style={{"width":200}}>
-          <Select defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} size="large"/>
-          <Input id="site4" placeholder="金额" size="large" style={{"width":170}}/>
-        </span>
       </Show>
       <Show name="单选框">
         <RadioGroup onChange={this.radioChange} value={this.state.radioValue}>

@@ -281,7 +281,7 @@ const {React, ReactDOM} = mimiron2;
 const List = mimiron2.List;
 const Resource=React.createClass({
   render(){
-    <List data={{
+    return <List data={{
       "客户名称":"测试客户",
       "合同名称":"测试合同",
       "合同编码":"YJSAUTO201509300001",
@@ -298,3 +298,39 @@ const Resource=React.createClass({
 | 属性(prop) | 默认值 | 说明  |
 | --- | --- | --- |
 | data | null | 列表数据 |
+
+5.NominalTable
+
+说明:
+
+名义表格, 此组件的children将按照Row和Col排列成表格样式.
+
+示例:
+```
+const {React, ReactDOM} = mimiron2;
+const NominalTable = mimiron2.NominalTable;
+const Sample=React.createClass({
+  render(){
+    return <NominalTable>
+          <Row>
+            <Col span="12">head1</Col>
+            <Col span="12">head2</Col>
+          </Row>
+          <Row>
+            <Col span="12">body1</Col>
+            <Col span="12">body2</Col>
+          </Row>
+          <Row>
+            <Col span="12">body3</Col>
+            <Col span="12">body4</Col>
+          </Row>
+        </NominalTable>
+  }
+})
+```
+
+属性:
+
+| 属性(prop) | 默认值 | 说明  |
+| --- | --- | --- |
+| children | null | 形成表格的组件, 必须传入 |

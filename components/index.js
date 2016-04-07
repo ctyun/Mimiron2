@@ -59,6 +59,7 @@ const mimiron2 = {
   Command: require("./business/command"),
   Login: require("./business/page/login"),
   List: require("./business/list"),
+  NominalTable: require("./business/nominalTable"),
   //工具
   Ajax: require("./tools/ajax"),
   Loader: require("./tools/loader"),
