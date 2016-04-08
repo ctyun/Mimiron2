@@ -12,6 +12,8 @@ let Ajax = {
 			success: data => {
 				// 取消css效果
 				--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
+				if(data["info"] && data["autoWrap"])
+					data = data.autoWrap;
 				func(data);
 			},
 			error: this.onError,
@@ -29,6 +31,8 @@ let Ajax = {
         	success: data => {
         		// 取消css效果
 				--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
+				if(data["info"] && data["autoWrap"])
+					data = data.autoWrap;
 				func(data);
 			},
 			error: this.onError,

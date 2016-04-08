@@ -22,20 +22,32 @@ let Loader={
 		let RouteConfig = window.mimiron2.RouteConfig;
         for(let i in RouteConfig){
             if(RouteConfig[i].test(url)){
-                this.loadJSX(i);
+                if(i.indexOf("|") != -1){
+                    for(let j of i.split("|")){
+                        this.loadJSX(j);
+                    }                  
+                } else {
+                    this.loadJSX(i);
+                }
                 return 
             }
         }
-        for(let i in RouteConfig){ //如果不重复一次, 有时候会找不到, 原因尚不明确.
-            if(RouteConfig[i].test(url)){
-                this.loadJSX(i);
-                return 
-            }
-        }
+        // for(let i in RouteConfig){ //如果不重复一次, 有时候会找不到, 原因尚不明确.
+        //     if(RouteConfig[i].test(url)){
+        //         if(i.indexOf("|")){
+        //             for(let j of i.split("|"))
+        //                 this.loadJSX(j);
+        //         } else {
+        //             this.loadJSX(i);
+        //         }
+        //         return 
+        //     }
+        // }
         alert(`无权限访问 ${url} .`);
         console.info(`url ${url} 没有注册.`);
 	},
 	loadJSX(path) { //根据路径加载jsx文件
+        //如果已经进行了转义, 直接加载js文件. 目前此方法有些buggy
         if(window.mimiron2.compiled){
             path = path.replace(".jsx",".js");
             // 这里需要约束所有jsx页面全部渲染到DOM id= page-wrapper
@@ -59,6 +71,7 @@ let Loader={
             document.body.removeChild(script); //mimironUse.runScripts();运行之后即可直接删除jsx标签, 否则加载base.jsx之后加载其他jsx文件会导致重复加载    
             return;
         }
+        //检查jsx转义器
         if(!window.mimironUse || typeof(window.mimironUse.runScripts)=="undefined"){
           console.info(`如需异步加载jsx文件, 请使用Mimiron2自带的browser.js文件, 或者将babel下此文件的runScripts方法暴露到window.mimironUse下`);
           return;

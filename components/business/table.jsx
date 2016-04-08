@@ -39,11 +39,21 @@ let Table = React.createClass({
 				dataIndex:this.props.jsonKey[i]
 			})
 		}
+		for(let i=0; i<this.props.data.length; i++){
+			if(!this.props.data[i]["key"])
+				this.props.data[i]["key"] = i.toString();
+		}
 		this.setState({columns:columns});
 	},
 	onChange: function(pageNo){
 		this.props.doList(pageNo, this.state.pageSize);
 		this.setState({pageNo:pageNo});
+	},
+	componentWillReceiveProps(nextProps){
+		for(let i=0; i<nextProps.data.length; i++){
+			if(!nextProps.data[i]["key"])
+				nextProps.data[i]["key"] = i.toString();
+		}
 	},
 	onShowSizeChange: function(pageNo, pageSize){
 		this.props.doList(pageNo, pageSize);

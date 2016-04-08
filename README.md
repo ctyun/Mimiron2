@@ -334,3 +334,39 @@ const Sample=React.createClass({
 | 属性(prop) | 默认值 | 说明  |
 | --- | --- | --- |
 | children | null | 形成表格的组件, 必须传入 |
+
+### 新增工具类说明
+
+1. Ajax
+
+用于发送Ajax请求.
+
+用法参考:
+```
+const Ajax = mimiron2.Ajax;
+let param = {key:"value"};
+Ajax.post("/vmservice/queryHostInVPC", param,result => {
+  this.setState({data:result.data});
+});
+Ajax.get("/vmservice/queryHostInVPC",result => {
+  this.setState({data:result.data});
+});
+```
+
+方法列表:
+
+  * Ajax.get(): 发送get请求, 需要传入url和callback(result)两个参数.
+
+  * Ajax.post(): 发送post请求, 需要传入url,params和callback(result)三个参数.
+
+2. Loader
+
+请不要尝试使用此类中的方法.
+
+3. Misc
+
+杂项方法.
+
+方法列表:
+  
+  * Misc.$_GET(): 得到当前url携带的参数, 无传入参数.
