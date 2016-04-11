@@ -60,6 +60,9 @@ ul.ant-pagination {
 .nominal-table>.row>* {
     border: 1px solid;
     padding: 6px;
+    float: none;
+    display: table-cell;
+    word-break: break-all;
 }
 
 .nominal-table>.row:first-child>* {
@@ -67,4 +70,13 @@ ul.ant-pagination {
     font-weight: 600;
     background-color: #e9e9e9;
     padding: 6px;
+    float: none;
+    display: table-cell;
+    word-break: break-all;
+}
+
+.nominal-table>.row{
+    float: none;
+    display: table-row;
+    width: 100%;
 }

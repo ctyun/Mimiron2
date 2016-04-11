@@ -32,17 +32,17 @@ let Loader={
                 return 
             }
         }
-        // for(let i in RouteConfig){ //如果不重复一次, 有时候会找不到, 原因尚不明确.
-        //     if(RouteConfig[i].test(url)){
-        //         if(i.indexOf("|")){
-        //             for(let j of i.split("|"))
-        //                 this.loadJSX(j);
-        //         } else {
-        //             this.loadJSX(i);
-        //         }
-        //         return 
-        //     }
-        // }
+        for(let i in RouteConfig){ //如果不重复一次, 有时候会找不到, 原因尚不明确.
+            if(RouteConfig[i].test(url)){
+                if(i.indexOf("|")){
+                    for(let j of i.split("|"))
+                        this.loadJSX(j);
+                } else {
+                    this.loadJSX(i);
+                }
+                return 
+            }
+        }
         alert(`无权限访问 ${url} .`);
         console.info(`url ${url} 没有注册.`);
 	},

@@ -27,9 +27,6 @@ Mimiron2经过打包之后得到一个js文件, 一个css文件, 之间引入HTM
 
 1. btn: margin:0, 5px
 
-### FIXME
-
-1. 目前直接修改了Select和Table的源码(使用V0.12.x), 为了支持data(object)直接初始化, 其实应该在business中包装一层, 除非迫不得已, 应该保证ant design组件的完整性, 以此保证可升级. 此问题将在下次基础组件升级时被解决.
 
 ### 组件使用说明
 
