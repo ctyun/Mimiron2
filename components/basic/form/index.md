@@ -81,9 +81,11 @@ CustomizedForm = Form.create({})(CustomizedForm);
 | getFieldError | 获取某个输入控件的 Error | Function(name) | | |
 | isFieldValidating | 判断一个输入控件是否在校验状态 | Function(name) | | |
 | resetFields | 重置一组输入控件的值与状态，如不传入参数，则重置所有组件 | Function([names: string[]]) | | |
-| getFieldProps 详见下面描述 | | | | |
+| getFieldProps | 用于和表单进行双向绑定，详见下方描述 | | | |
 
 #### this.props.form.getFieldProps(id, options)
+
+`getFieldProps` 返回的属性包括 `id`、`value`(或你设置的其它 `valuePropName`)、`ref`、`onChange`(或者你设置的其它 `trigger` `validateTrigger`)，所以不应再设置同样的属性，以免冲突。如果对其返回值的细节有兴趣，可以 `console.log` 出来查看。
 
 | 参数      | 说明                                     | 类型       |  可选值 |默认值 |
 |-----------|------------------------------------------|------------|-------|--------|
@@ -128,8 +130,9 @@ CustomizedForm = Form.create({})(CustomizedForm);
 #### Input.Group
 
 ```html
-<Input.Group className={string}>      // 样式类名前缀，默认是 ant-input-group，通常您不需要设置。
-  {children}
+<Input.Group className={string}>
+  <Input />
+  <Input />
 </Input.Group>
 ```
 

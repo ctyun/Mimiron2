@@ -50,6 +50,7 @@ const mimiron2 = {
   Calendar: require('./basic/calendar'),
   TimePicker: require('./basic/time-picker'),
   Transfer: require('./basic/transfer'),
+  Cascader: require('./basic/cascader'),
   //业务组件
   Page: require("./business/frame/page"),
   Sidebar: require("./business/frame/sidebar"),

@@ -18,7 +18,7 @@ Mimiron2经过打包之后得到一个js文件, 一个css文件, 之间引入HTM
 ### Tips
 
 1. 在webpack中公用一个entry会导致无法暴露output.library中的元素.
-1. 基于ant design V0.12.11-beta.
+1. 基于ant design V0.12.13.
 1. 支持React正常用法.
 1. 前端使用babel.browser进行转义, 除了模块管理, 其他ES6语法全部可用.
 

@@ -67,9 +67,9 @@ export default React.createClass({
     const { title, okText, cancelText, placement, overlayStyle, trigger, ...restProps } = this.props;
     const overlay = (
       <div>
-        <div className={`${prefixCls}-content`}>
+        <div className={`${prefixCls}-inner-content`}>
           <div className={`${prefixCls}-message`}>
-            <Icon type="exclamation-circle" />
+            <Icon type="question-circle" />
             <div className={`${prefixCls}-message-title`}>{title}</div>
           </div>
           <div className={`${prefixCls}-buttons`}>

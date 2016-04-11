@@ -9,7 +9,8 @@ export default React.createClass({
     return {
       prefixCls: 'ant-alert',
       showIcon: false,
-      onClose() {}
+      onClose() {},
+      type: 'info',
     };
   },
   getInitialState() {
@@ -51,7 +52,7 @@ export default React.createClass({
         iconType = 'info-circle';
         break;
       case 'error':
-        iconType = 'exclamation-circle';
+        iconType = 'cross-circle';
         break;
       case 'warn':
         iconType = 'exclamation-circle';
