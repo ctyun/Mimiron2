@@ -20,6 +20,7 @@ const Ajax = mimiron2.Ajax;
 const Input = mimiron2.Input;
 const InputGroup = Input.Group;
 const Select = mimiron2.Select;
+const Cascader = mimiron2.Cascader;
 
 class Show extends React.Component{
   render() {
@@ -125,6 +126,29 @@ let Demo = React.createClass({
       checkType:"none",
     };
     const sel = <Select defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} />;
+    const options = [{
+      value: 'zhejiang',
+      label: '浙江',
+      children: [{
+        value: 'hangzhou',
+        label: '杭州',
+        children: [{
+          value: 'xihu',
+          label: '西湖',
+        }],
+      }],
+    }, {
+      value: 'jiangsu',
+      label: '江苏',
+      children: [{
+        value: 'nanjing',
+        label: '南京',
+        children: [{
+          value: 'zhonghuamen',
+          label: '中华门',
+        }],
+      }],
+    }];
     return (<div>
     <div className="row">
       <Show name="按钮">
@@ -163,6 +187,9 @@ let Demo = React.createClass({
       </Show>
       <Show name="表格">
         <Table {...tableProps} />
+      </Show>
+      <Show name="级联选择">
+        <Cascader defaultValue={['zhejiang', 'hangzhou', 'xihu']} options={options} />
       </Show>
     </div>
     </div>);

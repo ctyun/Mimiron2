@@ -8,10 +8,6 @@ let Select = React.createClass({
 		return{
 		}
 	},
-	componentWillReceiveProps(nextProps){
-		
-	    this.setState({data:data});
-	},
 	render(){
 		let data=[];
 	    if (this.props.data){

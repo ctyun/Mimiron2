@@ -1,58 +1,18 @@
-@tree-prefix-cls: ant-tree;
-.antCheckboxFn(@checkbox-prefix-cls: ant-tree-checkbox);
+@select-tree-prefix-cls: ant-select-tree;
 @import "../mixins/iconfont";
-.antTreeSwitcherIcon() {
-  position: relative;
-  &:after {
-    .iconfont-size-under-12px(6px);
-    content: '\e611';
-    display: inline-block;
-    font-family: 'anticon';
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    right: 4px;
-    color: #666;
-    transition: transform .3s ease;
-  }
-}
-.@{tree-prefix-cls} {
+
+.antCheckboxFn(@checkbox-prefix-cls: ant-select-tree-checkbox);
+
+.@{select-tree-prefix-cls} {
   margin: 0;
-  padding: 5px;
+  padding: 8px;
   font-size: 12px;
   li {
     padding: 0;
-    margin: 7px 0;
+    margin: 8px 0;
     list-style: none;
     white-space: nowrap;
     outline: 0;
-    a[draggable],
-    a[draggable="true"] {
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      /* Required to make elements draggable in old WebKit */
-      -khtml-user-drag: element;
-      -webkit-user-drag: element;
-    }
-    &.drag-over {
-      > a[draggable] {
-        background-color: @primary-color;
-        color: white;
-        opacity: 0.8;
-      }
-    }
-    &.drag-over-gap-top {
-      > a[draggable] {
-        border-top: 2px @primary-color solid;
-      }
-    }
-    &.drag-over-gap-bottom {
-      > a[draggable] {
-        border-bottom: 2px @primary-color solid;
-      }
-    }
     &.filter-node {
       > a {
         color: @error-color!important;
@@ -76,16 +36,16 @@
       &:hover {
         background-color: tint(@primary-color, 90%);
       }
-      &.@{tree-prefix-cls}-node-selected {
+      &.@{select-tree-prefix-cls}-node-selected {
         background-color: tint(@primary-color, 80%);
       }
     }
     span {
-      &.@{tree-prefix-cls}-checkbox {
+      &.@{select-tree-prefix-cls}-checkbox {
         margin: 2px 4px 0 0;
       }
-      &.@{tree-prefix-cls}-switcher,
-      &.@{tree-prefix-cls}-iconEle {
+      &.@{select-tree-prefix-cls}-switcher,
+      &.@{select-tree-prefix-cls}-iconEle {
         margin: 0;
         width: 16px;
         height: 16px;
@@ -96,7 +56,7 @@
         cursor: pointer;
         outline: none;
       }
-      &.@{tree-prefix-cls}-icon_loading {
+      &.@{select-tree-prefix-cls}-icon_loading {
         &:after {
           content: '\e6a1';
           display: inline-block;
@@ -106,17 +66,17 @@
           margin-top: 8px;
         }
       }
-      &.@{tree-prefix-cls}-switcher {
-        &.@{tree-prefix-cls}-roots_open,
-        &.@{tree-prefix-cls}-center_open,
-        &.@{tree-prefix-cls}-bottom_open,
-        &.@{tree-prefix-cls}-noline_open {
+      &.@{select-tree-prefix-cls}-switcher {
+        &.@{select-tree-prefix-cls}-roots_open,
+        &.@{select-tree-prefix-cls}-center_open,
+        &.@{select-tree-prefix-cls}-bottom_open,
+        &.@{select-tree-prefix-cls}-noline_open {
           .antTreeSwitcherIcon();
         }
-        &.@{tree-prefix-cls}-roots_close,
-        &.@{tree-prefix-cls}-center_close,
-        &.@{tree-prefix-cls}-bottom_close,
-        &.@{tree-prefix-cls}-noline_close {
+        &.@{select-tree-prefix-cls}-roots_close,
+        &.@{select-tree-prefix-cls}-center_close,
+        &.@{select-tree-prefix-cls}-bottom_close,
+        &.@{select-tree-prefix-cls}-noline_close {
           .antTreeSwitcherIcon();
           .ie-rotate(3);
           &:after {
