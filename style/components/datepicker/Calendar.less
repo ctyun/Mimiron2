@@ -153,7 +153,7 @@
     display: block;
     margin: 0 auto;
     color: #666;
-    border-radius: @border-radius-sm;
+    border-radius: 4px;
     width: 20px;
     height: 20px;
     line-height: 18px;
@@ -167,7 +167,6 @@
       background: tint(@primary-color, 90%);
       cursor: pointer;
     }
-
     &:active {
       color: #fff;
       background: tint(@primary-color, 20%);
@@ -277,14 +276,9 @@
   .@{calendar-prefix-cls}-ok-btn {
     .btn;
     .btn-primary;
-    .button-size(@btn-padding-sm; @font-size-base; @border-radius-sm);
+    .button-size(@btn-padding-sm; @font-size-base; @btn-border-radius-sm);
     position: absolute;
-    bottom: 8px;
+    bottom: 9px;
     right: 9px;
-
-    &-disabled {
-      .button-color(@btn-disable-color; @btn-disable-bg; @btn-disable-border);
-      cursor: not-allowed;
-    }
   }
 }

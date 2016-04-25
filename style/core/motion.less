@@ -1,10 +1,5 @@
 .motion-common() {
-  animation-duration: .2s;
-  animation-fill-mode: both;
-}
-
-.motion-common-leave() {
-  animation-duration: .2s;
+  animation-duration: .3s;
   animation-fill-mode: both;
 }
 
@@ -15,7 +10,7 @@
     animation-play-state: paused;
   }
   .@{className}-leave {
-    .motion-common-leave();
+    .motion-common();
     animation-play-state: paused;
   }
   .@{className}-enter.@{className}-enter-active,

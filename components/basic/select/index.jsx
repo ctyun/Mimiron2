@@ -30,7 +30,8 @@ const AntSelect = React.createClass({
     return (
       <Select {...this.props}
         className={cls}
-        notFoundContent={notFoundContent} />
+        notFoundContent={notFoundContent} 
+        onChange={this.props.onChange}/>
     );
   }
 });

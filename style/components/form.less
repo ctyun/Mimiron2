@@ -4,20 +4,19 @@
 
 label {
   position: relative;
+  &[required]:before {
+    display: inline-block;
+    margin-right: 4px;
+    content: "*";
+    font-family: SimSun;
+    font-size: @font-size-base;
+    color: @label-required-color;
+  }
 
   > .@{iconfont-css-prefix} {
     vertical-align: top;
     font-size: @font-size-base;
   }
-}
-
-.@{css-prefix}form-item-required:before {
-  display: inline-block;
-  margin-right: 4px;
-  content: "*";
-  font-family: SimSun;
-  font-size: @font-size-base;
-  color: @label-required-color;
 }
 
 // Input styles
@@ -72,10 +71,6 @@ input[type="checkbox"] {
   margin-bottom: @form-item-margin-bottom;
   color: #666;
 
-  &-control {
-    line-height: 32px;
-  }
-
   &.@{css-prefix}form-item-with-help {
     margin-bottom: @form-item-margin-bottom - @font-size-base * @line-height-base;
   }
@@ -84,8 +79,6 @@ input[type="checkbox"] {
     color: @label-color;
     text-align: right;
     vertical-align: middle;
-    padding-top: 7px;
-    padding-bottom: 7px;
 
     &:lang(en) {
       padding-right: 8px;
@@ -97,9 +90,11 @@ input[type="checkbox"] {
   }
 }
 
-.@{css-prefix}form-explain {
-  line-height: 1.5;
-  margin-top: 3px;
+.@{css-prefix}form-text,
+.@{css-prefix}form-split {
+  margin: 0!important;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .@{css-prefix}form-text {
@@ -111,6 +106,11 @@ input[type="checkbox"] {
   display: block;
   text-align: center;
 }
+
+.@{css-prefix}form-explain {
+  float: left;
+}
+
 
 // 表单下的输入框尺寸唯一: 大尺寸
 form {
@@ -158,6 +158,11 @@ form {
   .@{css-prefix}checkbox-vertical,
   .@{css-prefix}radio-vertical {
     display: block;
+    margin-top: 16px;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   .@{input-number-prefix-cls} {
@@ -165,18 +170,18 @@ form {
     margin-right: 8px;
   }
 
-  .@{select-prefix-cls} {
+  .@{calendar-prefix-cls}-picker {
     width: 100%;
   }
 }
 
 // Input combined with select
-.@{css-prefix}input-group-wrap {
+.@{css-prefix}input-group {
   .@{select-prefix-cls}-selection {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     &:hover {
-      border-color: @border-color-base;
+      border-color: #d9d9d9;
     }
   }
 
@@ -192,7 +197,7 @@ form {
   }
 
   .@{select-prefix-cls}-open .@{select-prefix-cls}-selection {
-    border-color: @border-color-base;
+    border-color: #d9d9d9;
     box-shadow: none;
   }
 }
@@ -204,8 +209,7 @@ form {
   .ant-search-btn {
     .btn-default;
     border-radius: 0 @border-radius-base - 1 @border-radius-base - 1 0;
-    margin-left: -100%;
-    left: -1px;
+    margin-left: -30px;
     position: relative;
     border-width: 0 0 0 1px;
     z-index: 2;
@@ -232,6 +236,15 @@ form {
     .make-row;
   }
 
+  .@{css-prefix}form-item-compact {
+    label,
+    .@{css-prefix}form-text,
+    .@{css-prefix}form-split {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
   .@{css-prefix}radio-inline,
   .@{css-prefix}checkbox-inline {
     vertical-align: top;
@@ -243,12 +256,6 @@ form {
   .@{css-prefix}form-item {
     display: inline-block;
     margin-right: 10px;
-    margin-bottom: 0;
-
-    &-with-help {
-      margin-bottom: 24px;
-    }
-
     > div {
       display: inline-block;
     }
@@ -260,6 +267,10 @@ form {
     vertical-align: middle;
   }
 
+  .@{calendar-prefix-cls}-picker-input {
+    width: 100%!important;
+  }
+
   .@{css-prefix}form-text {
     display: inline-block;
   }
@@ -267,19 +278,16 @@ form {
   .has-feedback {
     display: inline-block;
   }
-
-  // Fix https://github.com/ant-design/ant-design/issues/1040
-  .@{css-prefix}form-explain {
-    position: absolute;
-  }
 }
 
 .@{css-prefix}form-horizontal,
 .@{css-prefix}form-inline {
   label {
+    padding-top: 7px;
+    padding-bottom: 7px;
     > input[type="radio"],
     > input[type="checkbox"] {
-      margin-right: 4px;
+      margin-right: 5px;
     }
   }
 }
@@ -291,7 +299,7 @@ form {
 .is-validating {
   &.has-feedback:after {
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
     font-family: "anticon" !important;
     .square(@input-height-lg);
@@ -390,10 +398,6 @@ form {
     &-arrow {
       color: @error-color;
     }
-  }
-
-  .@{select-prefix-cls}-combobox .@{select-prefix-cls}-search__field:focus {
-    box-shadow: none;
   }
 
   // ant-datepicker

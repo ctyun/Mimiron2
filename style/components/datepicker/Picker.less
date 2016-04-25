@@ -1,6 +1,6 @@
 .@{calendar-prefix-cls}-picker-container {
   position: absolute;
-  z-index: @zindex-picker;
+  z-index: 1070;
 
   &.slide-up-enter.slide-up-enter-active&-placement-topLeft,
   &.slide-up-enter.slide-up-enter-active&-placement-topRight,
@@ -36,6 +36,10 @@
 
   > input {
     outline: none;
+  }
+
+  &-open {
+    opacity: 0;
   }
 
   &-icon {

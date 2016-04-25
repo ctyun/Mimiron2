@@ -1,19 +1,30 @@
 
 let Misc={
 	$_GET() {
-	    var url = window.document.location.href.toString();
-	    var u = url.split("?");
+	    let url = window.document.location.href.toString();
+	    let u = url.split("?");
 	    if(typeof(u[1]) == "string"){
 	        u = u[1].split("&");
-	        var get = {};
-	        for(var i in u){
-	            var j = u[i].split("=");
+	        let get = {};
+	        for(let i in u){
+	            let j = u[i].split("=");
 	            get[j[0]] = j[1];
 	        }
 	        return get;
 	    } else { 
 	        return {};
 	    }
+	},
+	clone(obj){
+		if (typeof (obj) != 'object')
+			return obj;
+		let re = {};
+		if (obj.constructor==Array)
+			re = [];
+		for ( let i in obj) {
+			re[i] = Misc.clone(obj[i]);
+		}
+		return re;
 	},
 }
 

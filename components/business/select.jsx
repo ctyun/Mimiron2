@@ -19,7 +19,7 @@ let Select = React.createClass({
 	        }
 	      }
 	    }
-		return(<SelectRaw {...this.props}>
+		return(<SelectRaw {...this.props} onChange={this.props.onChange}>
 			{data.length==0?this.props.children:data}
 		</SelectRaw>);
 	}

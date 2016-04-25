@@ -8,7 +8,7 @@
 
 .@{notification-prefix-cls} {
   position: fixed;
-  z-index: @zindex-notification;
+  z-index: 1000;
   width: @notice-width;
   margin-right: 24px;
 
@@ -92,7 +92,7 @@
   }
 
   .notification-fade-effect {
-    animation-duration: 0.24s;
+    animation-duration: 0.3s;
     animation-fill-mode: both;
     animation-timing-function: @ease-in-out;
   }
@@ -106,7 +106,6 @@
 
   &-fade-leave {
     .notification-fade-effect();
-    animation-duration: 0.2s;
     animation-play-state: paused;
   }
 

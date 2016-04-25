@@ -21,6 +21,7 @@ const Input = mimiron2.Input;
 const InputGroup = Input.Group;
 const Select = mimiron2.Select;
 const Cascader = mimiron2.Cascader;
+const Misc = mimiron2.Misc;
 
 class Show extends React.Component{
   render() {
@@ -180,7 +181,7 @@ let Demo = React.createClass({
         </RadioGroup>
       </Show>
       <Show name="日期选择">
-        <DatePicker defaultValue="2015/01/01" format="yyyy/MM/dd" />
+        <DatePicker defaultValue="2015/01/01" format="yyyy/MM/dd" onChange={value=>{console.log(value); window.testdate = value;}}/>
       </Show>
       <Show name="ant表格">
         <TableRaw dataSource={dataSource} columns={columns} />
@@ -190,6 +191,15 @@ let Demo = React.createClass({
       </Show>
       <Show name="级联选择">
         <Cascader defaultValue={['zhejiang', 'hangzhou', 'xihu']} options={options} />
+      </Show>
+      <Show name="原生Select">
+        <select name="raw_select" onChange={(a,b,c)=>{console.log(a,b,c)}}>
+          <option value ="volvo">Volvo</option>
+          <option value ="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+        </select>
+        <Select defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} onChange={(a,b,c)=>{console.log(a,b,c)}} />;
       </Show>
     </div>
     </div>);

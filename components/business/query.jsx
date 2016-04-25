@@ -35,8 +35,10 @@ let Query = React.createClass({
 			children = nextProps.children;
 		}
 		for(let child of children){
-			if(child && (child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]])){
-				formData[child.props["name"]] = child.props["value"];
+			if(child && (child.props["defaultValue"] || child.props["value"])){
+				if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
+					formData[child.props["name"]] = child.props["value"];
+				}
 			}
 		}
 		this.setState({formData:formData});
@@ -79,10 +81,8 @@ let Query = React.createClass({
 				let childName = children[i].props["name"];
 				let injectProps = {
 					onChange: this.setValue.bind(null, children[i].props["onChange"],
-						children[i].props["name"])
-				}
-				if(1){ //注意, 这里不能使用this.state.formData.childName
-					injectProps["value"] = this.state.formData[childName];
+						children[i].props["name"]),
+					value:this.state.formData[childName],
 				}
 				let child = React.cloneElement(children[i],injectProps);
 				formEntity.push(<Col span="8" key={i}>
