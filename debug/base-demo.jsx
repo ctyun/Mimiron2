@@ -22,6 +22,7 @@ const InputGroup = Input.Group;
 const Select = mimiron2.Select;
 const Cascader = mimiron2.Cascader;
 const Misc = mimiron2.Misc;
+const SimpleForm = mimiron2.SimpleForm;
 
 class Show extends React.Component{
   render() {
@@ -200,6 +201,13 @@ let Demo = React.createClass({
           <option value="audi">Audi</option>
         </select>
         <Select defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} onChange={(a,b,c)=>{console.log(a,b,c)}} />;
+      </Show>
+      <Show name="简易表单">
+        <SimpleForm ref="simpleform" itemSpan={12}>
+          <Input name="test-input" labelName="输入1"/>
+          <Select name="test-Select" labelName="输入2" data={{"1":"一","2":"二"}} />
+        </SimpleForm>
+        <Button onClick={()=>{console.log(this.refs.simpleform.getValue());}}>Test</Button>
       </Show>
     </div>
     </div>);

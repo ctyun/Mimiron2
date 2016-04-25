@@ -156,6 +156,10 @@ class Show extends React.Component{
 | totalRows | 0 | 表格数据总数 |
 | turnable | true | 表格显示下方的翻页器 |
 
+3.DatePicker
+
+onChange携带的value为format之后的String而不是js的Date对象.
+
 **下列组件为新增组件:**
 
 1.Page
@@ -332,6 +336,39 @@ const Sample=React.createClass({
 | --- | --- | --- |
 | children | null | 形成表格的组件, 必须传入 |
 
+6.SimpleForm
+
+说明:
+
+简易表单, 满足不需要表单验证, 无特殊样式需求, 无需受控的表单需求. 可通过this.refs.*formref*.getValue()取得当前表单值.
+
+示例:
+```
+const {React, ReactDOM} = mimiron2;
+
+const Sample=React.createClass({
+  render(){
+    return <div>
+      <SimpleForm ref="simpleform" itemSpan={12}>
+        <Input name="test-input" labelName="输入1"/>
+        <Select name="test-Select" labelName="输入2" data={{"1":"一","2":"二"}} />
+      </SimpleForm>
+      <Button onClick={()=>{console.log(this.refs.simpleform.getValue());}}>Test</Button>
+    </div>
+  }
+})
+```
+
+属性:
+
+| 属性(prop) | 默认值 | 说明  |
+| --- | --- | --- |
+| ref | null | 组件的ref, 如需获得表单值, 则必须传入. |
+| children | null | 必须为Input, Select, DataPicker等常见的输入组件, 通过labelName输入给出描述性文字. |
+| itemSpan | 24 | 每个子组件所占宽度, 最大为24 |
+| labelSpan | 8 | 每个子组件描述文字所占宽度, 最大为24 |
+| wrapperSpan | 24 | 每个子组件输入部分所占宽度, 最大为24 |
+
 ### 新增工具类说明
 
 1. Ajax
@@ -367,3 +404,5 @@ Ajax.get("/vmservice/queryHostInVPC",result => {
 方法列表:
   
   * Misc.$_GET(): 得到当前url携带的参数, 无传入参数.
+
+  * Misc.clone(obj): 得到传入obj的深拷贝.
