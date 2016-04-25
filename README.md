@@ -369,6 +369,7 @@ const Sample=React.createClass({
 | labelSpan | 8 | 每个子组件描述文字所占宽度, 最大为24 |
 | wrapperSpan | 24 | 每个子组件输入部分所占宽度, 最大为24 |
 
+
 ### 新增工具类说明
 
 1. Ajax
