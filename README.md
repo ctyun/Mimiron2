@@ -372,7 +372,7 @@ const Sample=React.createClass({
 
 ### 新增工具类说明
 
-1. Ajax
+1.Ajax
 
 用于发送Ajax请求.
 
@@ -394,11 +394,11 @@ Ajax.get("/vmservice/queryHostInVPC",result => {
 
   * Ajax.post(): 发送post请求, 需要传入url,params和callback(result)三个参数.
 
-2. Loader
+2.Loader
 
 请不要尝试使用此类中的方法.
 
-3. Misc
+3.Misc
 
 杂项方法.
 
