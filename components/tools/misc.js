@@ -16,7 +16,7 @@ let Misc={
 	    }
 	},
 	clone(obj){
-		if (typeof (obj) != 'object')
+		if (typeof (obj) != 'object' | obj === null)
 			return obj;
 		let re = {};
 		if (obj.constructor==Array)
