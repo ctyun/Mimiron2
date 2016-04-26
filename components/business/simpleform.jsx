@@ -26,6 +26,25 @@ const SimpleForm = React.createClass({
 			wrapperSpan:16,
 		}
 	},
+	componentWillMount(){  //Query可能也需要这个生命周期, 传入defaultValue还有点bug, 尚未修改.
+		let formData = this.state.formData;
+		let children;
+		if(!this.props.children.length){
+			children = [this.props.children];
+		} else{
+			children = this.props.children;
+		}
+		console.log("componentWillMount",children);
+		for(let child of children){
+			if(child && (child.props["defaultValue"] || child.props["value"])){
+				if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
+					formData[child.props["name"]] = child.props["value"];
+				}
+			}
+		}
+		console.log("componentWillMount",formData);
+		this.setState({formData:formData});
+	},
 	componentWillReceiveProps(nextProps) {
 		let formData = this.state.formData;
 		let children;
@@ -41,6 +60,7 @@ const SimpleForm = React.createClass({
 				}
 			}
 		}
+		console.log("componentWillReceiveProps",formData);
 		this.setState({formData:formData});
 	},
 	setValue(func,name,e) {
@@ -69,6 +89,7 @@ const SimpleForm = React.createClass({
 					value:this.state.formData[childName],
 				}
 				let child = React.cloneElement(children[i],injectProps);
+				console.log(child);
 				formEntity.push(<Col span={this.props.itemSpan.toString()} key={i}>
 								<FormItem
 							        label={children[i].props["label"] || children[i].props["labelName"]}
