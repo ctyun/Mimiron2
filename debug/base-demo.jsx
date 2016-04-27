@@ -54,7 +54,9 @@ let Demo = React.createClass({
         pageNo:1,
         totalRows:0,
         data: [],
-      }
+      },
+      testdefaultvalue: "1",
+      inputnum:1,
     };
   },
   componentDidMount: function(){
@@ -91,7 +93,7 @@ let Demo = React.createClass({
           });
       });
   },
-  render: function() {
+  render() {
     const dataSource = [{
       key: '1',
       name: '胡彦斌',
@@ -151,6 +153,8 @@ let Demo = React.createClass({
         }],
       }],
     }];
+    let inputList =[], cnt=0;
+    while(++cnt < this.state.inputnum) inputList.push(<Input key={cnt} name={`inputList${cnt}`} style={{width:100}} />);
     return (<div>
     <div className="row">
       <Show name="按钮">
@@ -208,6 +212,22 @@ let Demo = React.createClass({
           <Select name="test-Select" labelName="输入2" data={{"1":"一","2":"二"}} />
         </SimpleForm>
         <Button onClick={()=>{console.log(this.refs.simpleform.getValue());}}>Test</Button>
+      </Show>
+      <Show name="defaultValue测试">
+        <Input defaultValue={this.state.testdefaultvalue} style={{width:100}}/>
+        <Button onClick={()=>{this.setState({testdefaultvalue:this.state.testdefaultvalue+1})}}>Test</Button>
+      </Show>
+      <Show name="动态增减input">
+        <SimpleForm ref="simpleform1" itemSpan={24}>
+          {inputList}
+        </SimpleForm>
+        <Button onClick={()=>{this.setState({inputnum:this.state.inputnum+1})}}>加一个</Button>
+        <Button onClick={()=>{
+          let input = [];
+          for(let key in this.refs.simpleform1.getValue())
+            if(key.search("inputList")>-1) input.push(this.refs.simpleform1.getValue()[key])
+          console.log(input);
+        }} type="primary">取值</Button>
       </Show>
     </div>
     </div>);
