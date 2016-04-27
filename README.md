@@ -407,3 +407,5 @@ Ajax.get("/vmservice/queryHostInVPC",result => {
   * Misc.$_GET(): 得到当前url携带的参数, 无传入参数.
 
   * Misc.clone(obj): 得到传入obj的深拷贝.
+
+  * Misc.tempVar(k,v): 如果同时传入k,v则保存v, 仅传入k则查询v.

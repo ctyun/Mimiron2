@@ -26,6 +26,15 @@ let Misc={
 		}
 		return re;
 	},
+	tempVar(k,v){
+		window.mimironUse.tempVar = window.mimironUse.tempVar || {};
+		if(typeof v =="undefined"){
+			return window.mimironUse.tempVar[k]
+		}else{
+			window.mimironUse.tempVar[k] = v;
+		}
+		return
+	}
 }
 
 export default Misc
