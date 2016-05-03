@@ -28,20 +28,23 @@ let Table = React.createClass({
 		}
 	},
 	componentDidMount: function(){
-		if (this.props.title.length != this.props.jsonKey.length){
+		this.formatCol(this.props.title, this.props.jsonKey, this.props.data);
+	},
+	formatCol: function(title, jsonKey, data){
+		if (title.length != jsonKey.length){
 			console.info(`注意! ${this.props.id}的title和jsonKey数量对不上.`);
 		}
 		let columns = []
-		for(let i=0; i<this.props.title.length; i++){
+		for(let i=0; i<title.length; i++){
 			columns.push({
 				key: i,
-				title:this.props.title[i],
-				dataIndex:this.props.jsonKey[i]
+				title:title[i],
+				dataIndex:jsonKey[i]
 			})
 		}
-		for(let i=0; i<this.props.data.length; i++){
-			if(!this.props.data[i]["key"])
-				this.props.data[i]["key"] = i.toString();
+		for(let i=0; i<data.length; i++){
+			if(!data[i]["key"])
+				data[i]["key"] = i.toString();
 		}
 		this.setState({columns:columns});
 	},
@@ -50,9 +53,9 @@ let Table = React.createClass({
 		this.setState({pageNo:pageNo});
 	},
 	componentWillReceiveProps(nextProps){
-		for(let i=0; i<nextProps.data.length; i++){
-			if(!nextProps.data[i]["key"])
-				nextProps.data[i]["key"] = i.toString();
+		//如果传入了新的title或者jsonKey, 则重构columns
+		if((this.props.title != nextProps.title) || (this.props.jsonKey != nextProps.jsonKey)){
+			this.formatCol(nextProps.title, nextProps.jsonKey, nextProps.data);
 		}
 	},
 	onShowSizeChange: function(pageNo, pageSize){
@@ -74,7 +77,9 @@ let Table = React.createClass({
 						pagination={false} 
 						size = {this.props.size}
 						expandedRowRender = {this.props.expandedRowRender}
-						onRowClick = {this.props.onRowClick}/>
+						onRowClick = {this.props.onRowClick}
+						columnsPageRange = {this.props.columnsPageRange}
+						columnsPageSize = {this.props.columnsPageSize}/>
 				</div>
 				{this.props.turnable?
 				<div className="row" style={{"marginTop":"5px"}}>

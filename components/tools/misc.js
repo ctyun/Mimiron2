@@ -34,6 +34,16 @@ let Misc={
 			window.mimironUse.tempVar[k] = v;
 		}
 		return
+	},
+	inList(item, list){
+		let flag = false;
+		for(let ins of list){
+			if(item == ins){
+				flag = true;
+				break;
+			}
+		}
+		return flag;
 	}
 }
 
