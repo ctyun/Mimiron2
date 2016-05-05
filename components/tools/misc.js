@@ -44,6 +44,16 @@ let Misc={
 			}
 		}
 		return flag;
+	},
+	harmoniousDivision(sum, cnt){
+		let resp = [];
+		let tempSum = 0;
+		let aver = Number((sum/cnt).toFixed(2));
+		while(cnt--){
+			resp.push(cnt?aver:Number((sum-tempSum).toFixed(2)));
+			tempSum += aver
+		}
+		return resp;
 	}
 }
 

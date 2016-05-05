@@ -155,6 +155,34 @@ let Demo = React.createClass({
     }];
     let inputList =[], cnt=0;
     while(++cnt < this.state.inputnum) inputList.push(<Input key={cnt} name={`inputList${cnt}`} style={{width:100}} />);
+    const columns1 = [
+      { title: '姓名', dataIndex: 'name', key: 'name' },
+      { title: '年龄', dataIndex: 'age', key: 'age' },
+      { title: '列1', dataIndex: 'age', key: '1' },
+      { title: '列2', dataIndex: 'age', key: '2' },
+      { title: '列3', dataIndex: 'age', key: '3' },
+      { title: '列4', dataIndex: 'age', key: '4' },
+      { title: '列5', dataIndex: 'age', key: '5' },
+      { title: '列6', dataIndex: 'age', key: '6' },
+      { title: '列7', dataIndex: 'age', key: '7' },
+      { title: '列8', dataIndex: 'age', key: '8' },
+      {
+        title: '操作',
+        key: 'operation',
+        render() {
+          return <a href="#">操作</a>;
+        }
+      },
+    ];
+    const data1 = [{
+      key: '1',
+      name: '胡彦斌',
+      age: 32,
+    }, {
+      key: '2',
+      name: '胡彦祖',
+      age: 42,
+    }];
     return (<div>
     <div className="row">
       <Show name="按钮">
@@ -228,6 +256,9 @@ let Demo = React.createClass({
             if(key.search("inputList")>-1) input.push(this.refs.simpleform1.getValue()[key])
           console.log(input);
         }} type="primary">取值</Button>
+      </Show>
+      <Show name="表格列翻页">
+        <TableRaw columns={columns1} dataSource={data1} columnsPageRange={[2, 9]} columnsPageSize={4} />;
       </Show>
     </div>
     </div>);
