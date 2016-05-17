@@ -156,9 +156,6 @@ class Show extends React.Component{
 | totalRows | 0 | 表格数据总数 |
 | turnable | true | 表格显示下方的翻页器 |
 
-3.DatePicker
-
-onChange携带的value为format之后的String而不是js的Date对象.
 
 **下列组件为新增组件:**
 
@@ -368,6 +365,11 @@ const Sample=React.createClass({
 | itemSpan | 24 | 每个子组件所占宽度, 最大为24 |
 | labelSpan | 8 | 每个子组件描述文字所占宽度, 最大为24 |
 | wrapperSpan | 24 | 每个子组件输入部分所占宽度, 最大为24 |
+
+7.SimpleDatePicker
+
+onChange携带的value为format之后的String而不是js的Date对象.
+其他与DatePicker一致.
 
 
 ### 新增工具类说明

@@ -9,7 +9,8 @@ const mimiron2 = {
   ReactDOM: ReactDOM,
   //基本组件
   Affix: require('./basic/affix'),
-  DatePicker: require('./business/datepicker'),
+  DatePicker: require('./basic/date-picker'),
+  SimpleDatePicker: require('./business/datepicker'),
   Tooltip: require('./basic/tooltip'),
   Carousel: require('./basic/carousel'),
   Tabs: require('./basic/tabs'),
