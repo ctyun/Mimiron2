@@ -12,7 +12,8 @@ import Icon from "../basic/icon";
 let Query = React.createClass({
 	getInitialState() {
 		return{
-			formData:this.props.formData
+			formData:this.props.formData,
+			show:this.props.defaultExpand || false,
 		}
 	},
 	getDefaultProps() {

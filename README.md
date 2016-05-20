@@ -266,6 +266,7 @@ const CMmanage=React.createClass({
 | submitName | "查询" | 查询按钮显示的文字 |
 | onSubmit | formData => {console.log(formData)}| 提交查询时的回调函数 |
 | onReset |()=>{} | 清空按钮的回调函数 |
+| defaultExpand | false | 默认是否开展查询条件 |
 
 4.List
 
