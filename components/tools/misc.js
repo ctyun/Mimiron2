@@ -54,6 +54,13 @@ let Misc={
 			tempSum += aver
 		}
 		return resp;
+	},
+	ts2str(ts){
+		if(ts){
+			let dt = new Date();
+			dt.setTime(ts*1000);
+			return dt.toLocaleString();
+		}
 	}
 }
 
