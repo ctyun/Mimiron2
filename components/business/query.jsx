@@ -25,9 +25,11 @@ let Query = React.createClass({
 		}
 	},
 	componentWillMount(){
+		console.log("will mount");
 		this.handleClear() //立即重置表单, 获得表单默认值.
 	},
 	componentWillReceiveProps(nextProps) {
+		console.log("will receive props", nextProps);
 		let formData = this.state.formData;
 		let children;
 		if(!nextProps.children.length){
@@ -35,13 +37,15 @@ let Query = React.createClass({
 		} else{
 			children = nextProps.children;
 		}
+		console.log("children", children);
 		for(let child of children){
-			if(child && (child.props["defaultValue"]!=undefined || child.props["value"]!=undefined)){
+			if(child && (child.props["defaultValue"] || child.props["value"]!=undefined)){ //注意, 这里defaultValue必须是有意义的值, 因为Input组件默认的DefaultValue是""
 				if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
 					formData[child.props["name"]] = child.props["value"];
 				}
 			}
 		}
+		console.log("formData", formData);
 		this.setState({formData:formData});
 	},
 	setValue(func,name,e) {
@@ -69,6 +73,7 @@ let Query = React.createClass({
 		this.props.onReset(e);
 	},
 	render() {
+		console.log("render")
 		let formData = this.state.formData;
 		let formEntity = [];
 		let children;
