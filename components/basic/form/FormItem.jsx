@@ -158,7 +158,7 @@ class FormItem extends React.Component {
     };
 
     return (
-      <div className={classNames(itemClassName)}>
+      <div className={classNames(itemClassName)} style={props.style}>
         {children}
       </div>
     );
