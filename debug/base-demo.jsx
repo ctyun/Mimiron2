@@ -260,6 +260,13 @@ let Demo = React.createClass({
       <Show name="表格列翻页">
         <TableRaw columns={columns1} dataSource={data1} columnsPageRange={[2, 9]} columnsPageSize={4} />;
       </Show>
+      <Show name="日期时间控件">
+        <DatePicker 
+          showTime 
+          format="yyyy-MM-dd HH:mm:ss" 
+          placeholder="请选择时间" 
+          onChange={value=>{window.value = value; console.log('选择了时间：', value.toString());alert(JSON.stringify(value))}} />
+      </Show>
     </div>
     </div>);
   }

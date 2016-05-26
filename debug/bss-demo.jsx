@@ -143,6 +143,11 @@ let Demo = React.createClass({
           </Select>
           <DatePicker name="input6" label="日期选择：" defaultValue="2015/01/01" format="yyyy/MM/dd" />
           <Select name="input7" labelName="另一种选择框：" data={{"1":"yi","2":"er"}} />
+          <DatePicker 
+            showTime 
+            format="yyyy-MM-dd HH:mm:ss" 
+            placeholder="请选择时间" 
+            onChange={value=>{window.value = value; console.log('选择了时间：', value.toString());alert(JSON.stringify(value))}} />
         </Query>
       </Show>
       <Show name="表格">
