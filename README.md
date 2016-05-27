@@ -412,3 +412,5 @@ Ajax.get("/vmservice/queryHostInVPC",result => {
   * Misc.clone(obj): 得到传入obj的深拷贝.
 
   * Misc.tempVar(k,v): 如果同时传入k,v则保存v, 仅传入k则查询v.
+
+  * Misc.uuid(): 生成一个uuid.
