@@ -2,7 +2,9 @@
 
 let Loader={
     openUrl(url) {
-        if(url[0]!="#"){
+        if(url.search("http")===0){
+        }
+        else if(url[0]!="#"){
             url = "#"+url;
         }
         var result = window.open(url);
