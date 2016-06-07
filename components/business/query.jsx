@@ -28,7 +28,6 @@ let Query = React.createClass({
 		this.handleClear() //立即重置表单, 获得表单默认值.
 	},
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
 		let formData = (nextProps.formData&&(nextProps.formData!=this.state.formData))?nextProps.formData: this.state.formData;
 		let children;
 		if(!nextProps.children.length){

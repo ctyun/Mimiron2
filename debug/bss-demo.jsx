@@ -110,6 +110,7 @@ let Demo = React.createClass({
       totalRows:this.state.table.totalRows,
       checkType:"none",
     };
+    const sel = <Select name="sel" defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} />;
     return (
     <div className="row">
       <Show name="查询框">
@@ -144,10 +145,12 @@ let Demo = React.createClass({
           <DatePicker name="input6" label="日期选择：" defaultValue="2015/01/01" format="yyyy/MM/dd" />
           <Select name="input7" labelName="另一种选择框：" data={{"1":"yi","2":"er"}} />
           <DatePicker 
+            labelName="请选择时间"
             showTime 
             format="yyyy-MM-dd HH:mm:ss" 
             placeholder="请选择时间" 
             onChange={value=>{window.value = value; console.log('选择了时间：', value.toString());alert(JSON.stringify(value))}} />
+          <Input labelName="条件输入" name="site4" placeholder="金额" size="large" addonBefore={sel}/>
         </Query>
       </Show>
       <Show name="表格">
