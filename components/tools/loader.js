@@ -13,6 +13,10 @@ let Loader={
         }
     },
 	loadUrl(url) { //根据url进行加载资源
+        mimironUse = window.mimironUse || {};
+        mimironUse.history = mimironUse.history || [];
+        mimironUse.history.push(url);
+
 		window.location.hash = url;
         if(url[0] == "#"){ //某些版本的IE window.location.hash返回#
             url = url.substring(1, url.length);
@@ -93,7 +97,16 @@ let Loader={
         document.body.appendChild(script);
         mimironUse.runScripts();
         document.body.removeChild(script); //mimironUse.runScripts();运行之后即可直接删除jsx标签, 否则加载base.jsx之后加载其他jsx文件会导致重复加载
-	}
+	},
+    goBack(step){
+        step = step || 1;
+        step ++ ;
+        let url = null;
+        while(step--)
+            url = mimironUse.history.pop();
+        window.location.hash = url;
+        this.loadUrl(url);
+    }
 }
 
 

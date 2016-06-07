@@ -399,7 +399,11 @@ Ajax.get("/vmservice/queryHostInVPC",result => {
 
 2.Loader
 
-请不要尝试使用此类中的方法.
+  * Loader.loadUrl(url): 跳转至url.
+
+  * Loader.openUrl(url): 在新标签页中打开url.
+
+  * Loader.goBack(step): 回退step步之前的url, step默认为1.
 
 3.Misc
 
