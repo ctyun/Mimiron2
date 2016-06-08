@@ -418,3 +418,7 @@ Ajax.get("/vmservice/queryHostInVPC",result => {
   * Misc.tempVar(k,v): 如果同时传入k,v则保存v, 仅传入k则查询v.
 
   * Misc.uuid(): 生成一个uuid.
+
+  * Misc.ts2str(ts): 将时间戳ts转换为标准时间字符串.
+
+  * Misc.date2str(d,format="YYYY-MM-DD"): 将Date类型的d转换为format指定格式的字符串.

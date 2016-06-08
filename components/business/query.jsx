@@ -70,6 +70,7 @@ let Query = React.createClass({
 	},
 	render() {
 		let formData = this.state.formData;
+		console.log(formData);
 		let formEntity = [];
 		let children;
 		if(!this.props.children.length){

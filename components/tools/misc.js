@@ -55,12 +55,28 @@ let Misc={
 		}
 		return resp;
 	},
+	padZero(num, n) {  
+	    let len = num.toString().length;  
+	    while(len < n) {  
+	        num = "0" + num;  
+	        len++;  
+	    }  
+	    return num;  
+	},
 	ts2str(ts){
 		if(ts){
 			let dt = new Date();
 			dt.setTime(ts*1000);
 			return dt.toLocaleString();
 		}
+	},
+	date2str(d, format){
+		d = d || new Date();
+		format = format || "YYYY-MM-DD";
+		let year = d.getFullYear();
+		let month = this.padZero(d.getMonth() + 1,2);
+		let day = this.padZero(d.getDate(),2);
+		return format.replace("YYYY",year).replace("yyyy",year).replace("%Y",year).replace("MM",month).replace("mm",month).replace("%m",month).replace("DD", day).replace("dd",day).replace("%D",day)
 	},
 	formatMoney(number, places, symbol, thousand, decimal) {
         places = !isNaN(places = Math.abs(places)) ? places : 2;

@@ -114,7 +114,7 @@ let Demo = React.createClass({
     return (
     <div className="row">
       <Show name="查询框">
-        <Query>
+        <Query defaultExpand={true}>
           <Input 
             name="input1" 
             placeholder="请输入搜索名称" 
