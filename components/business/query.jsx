@@ -8,6 +8,7 @@ import Input from "../basic/input";
 import Button from "../basic/button";
 import QueueAnim from "../basic/queue-anim";
 import Icon from "../basic/icon";
+import Misc from "../tools/misc";
 
 let Query = React.createClass({
 	getInitialState() {
@@ -18,7 +19,7 @@ let Query = React.createClass({
 	},
 	getDefaultProps() {
 		return{
-			formData: {},
+			formData: undefined,
 			submitName: "查询",
 			onSubmit: formData => {console.log(formData)},
 			onReset: ()=>{},
@@ -70,7 +71,6 @@ let Query = React.createClass({
 	},
 	render() {
 		let formData = this.state.formData;
-		console.log(formData);
 		let formEntity = [];
 		let children;
 		if(!this.props.children.length){
