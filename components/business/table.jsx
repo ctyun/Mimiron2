@@ -57,6 +57,9 @@ let Table = React.createClass({
 		if((this.props.title != nextProps.title) || (this.props.jsonKey != nextProps.jsonKey)){
 			this.formatCol(nextProps.title, nextProps.jsonKey, nextProps.data);
 		}
+		if(this.props.pageNo != nextProps.pageNo){
+			this.setState({pageNo:nextProps.pageNo});
+		}
 	},
 	onShowSizeChange: function(pageNo, pageSize){
 		this.props.doList(pageNo, pageSize);
