@@ -150,7 +150,8 @@ let Demo = React.createClass({
             format="yyyy-MM-dd HH:mm:ss" 
             placeholder="请选择时间" 
             onChange={value=>{window.value = value; console.log('选择了时间：', value.toString());alert(JSON.stringify(value))}} />
-          <Input labelName="条件输入" name="site4" placeholder="金额" size="large" addonBefore={sel}/>
+          <Input labelName="条件输入:" name="site4" placeholder="金额" addonBefore={sel}/>
+          <Select name="site5" labelName="条件选择: " data={{"1":"yi","2":"er"}}  addonBefore={sel}/>
         </Query>
       </Show>
       <Show name="表格">

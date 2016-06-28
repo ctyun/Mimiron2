@@ -14,3 +14,13 @@
 .ant-btn{
 	margin:0 5px
 }
+
+/*允许Select组件addonBefore输入Select*/
+.ant-input-group>.ant-select>.ant-select-selection--single {
+	background-color: white !important;
+}
+.ant-input-group-addon>.ant-select>.ant-select-selection--single {
+	margin-left: -1px;
+	height: 32px;
+	background-color: #eee;
+}

@@ -2,13 +2,18 @@ import React from 'react';
 import SelectRaw from "../basic/select"
 const Option = SelectRaw.Option;
 const OptGroup = SelectRaw.OptGroup;
+import classNames from 'classnames';
 
 let Select = React.createClass({
-	getInitialState: function(){
+	getDefaultProps(){
 		return{
 		}
 	},
-	render(){
+	getInitialState(){
+		return{
+		}
+	},
+	renderSelect(){
 		let data=[];
 	    if (this.props.data){
 	      for(let i in this.props.data){
@@ -22,6 +27,30 @@ let Select = React.createClass({
 		return(<SelectRaw {...this.props} onChange={this.props.onChange}>
 			{data.length==0?this.props.children:data}
 		</SelectRaw>);
+	},
+	renderLabledSelect(children){
+		const prefixCls= 'ant-input';
+		const props = this.props;
+		const wrapperClassName = `${prefixCls}-group`;
+		const addonClassName = `${wrapperClassName}-addon`;
+		const addonBefore = props.addonBefore ? (
+      <span className={addonClassName}>
+        {props.addonBefore}
+      </span>
+    ) : null;
+		const className = classNames({
+      [`${props.prefixCls}-wrapper`]: true,
+      [wrapperClassName]: (addonBefore),
+    });
+    return (
+      <span className={className}>
+        {addonBefore}
+        {children}
+      </span>
+    );
+	},
+	render(){
+		return this.props.addonBefore?this.renderLabledSelect(this.renderSelect()):this.renderSelect();
 	}
 });
 
