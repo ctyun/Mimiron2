@@ -41,6 +41,18 @@ let Table = React.createClass({
 				title:title[i],
 				dataIndex:jsonKey[i]
 			})
+			if(this.props.filters&&this.props.filters[i]!=undefined){
+				columns[i]["filters"] = this.props.filters[i];
+			}
+			if(this.props.onFilter&&this.props.onFilter[i]!=undefined){
+				columns[i]["onFilter"] = this.props.onFilter[i];
+			}
+			if(this.props.sorter&&this.props.sorter[i]!=undefined){
+				columns[i]["sorter"] = this.props.sorter[i];
+			}
+			if(this.props.filterMultiple&&this.props.filterMultiple[i]!=undefined){
+				columns[i]["filterMultiple"] = this.props.filterMultiple[i];
+			}
 		}
 		for(let i=0; i<data.length; i++){
 			if(!data[i]["key"])

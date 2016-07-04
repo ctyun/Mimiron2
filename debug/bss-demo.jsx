@@ -109,6 +109,16 @@ let Demo = React.createClass({
       pageNo:this.state.table.pageNo, //page:this.state.offset
       totalRows:this.state.table.totalRows,
       checkType:"none",
+      sorter:{1:(a,b)=>{a.requestTicketsNo - b.requestTicketsNo}},
+      filters: {2:[{
+        text: '姓李的',
+        value: '李',
+      }, {
+        text: '姓胡的',
+        value: '胡',
+      }]},
+      onFilter: {2:(value, record) => record.CMname.indexOf(value) === 0},
+      filterMultiple: {2:false},
     };
     const sel = <Select name="sel" defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} />;
     return (
