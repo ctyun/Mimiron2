@@ -101,6 +101,13 @@ let Misc={
 
 		let uuid = s.join("");
 		return uuid;
+	},
+	getUrlParam(index){
+		if(index === undefined){
+			index = -1;
+		}
+		let hash = window.location.hash.split("/");
+		return hash[hash.length + Number(index)];
 	}
 }
 
