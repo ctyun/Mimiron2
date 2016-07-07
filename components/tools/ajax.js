@@ -25,11 +25,11 @@ let Ajax = {
 		jQuery.ajax({
 			url:url,
 			method:"POST",
-        	data: JSON.stringify(params),
-        	contentType:"application/json",
-        	dataType: 'json',
-        	success: data => {
-        		// 取消css效果
+				data: JSON.stringify(params),
+				contentType:"application/json",
+				dataType: 'json',
+				success: data => {
+		  		// 取消css效果
 				--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
 				if(data["info"] && data["autoWrap"])
 					data = data.autoWrap;
@@ -38,6 +38,21 @@ let Ajax = {
 			error: this.onError,
 			complete: () => {},
 		})
+	},
+	form(url, params){
+		let form=$("<form>");
+		form.attr("style","display:none");
+		form.attr("target","");
+		form.attr("method","post");
+		form.attr("action",url);
+		$("body").append(form);
+		let input1=$("<input>");
+		input1.attr("type","hidden");
+		input1.attr("name","params");
+		input1.attr("value",JSON.stringify(params));
+		form.append(input1);
+		form.submit();
+		form.remove();
 	},
 	showLoading : function(){
 		mimironUse.ajaxLoadingStack = mimironUse.ajaxLoadingStack || 0;
