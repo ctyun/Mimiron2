@@ -1,31 +1,18 @@
 {
   "name": "mimiron2",
-  "version": "1.0.1",
-  "title": "Ant Design",
-  "description": "一个 UI 设计语言",
-  "homepage": "http://ant.design/",
+  "version": "1.0.2",
+  "title": "mimiron2",
+  "description": "基于react和ant.design的组件库",
   "keywords": [
-    "ant",
-    "design",
-    "react",
-    "react-component",
-    "component",
-    "components",
-    "ui",
-    "framework",
-    "frontend"
+    "react"
   ],
   "contributors": [
-    "ant"
+    "astwyg"
   ],
   "bugs": {
-    "url": "https://github.com/ant-design/ant-design/issues"
+    "url": "https://github.com/ctyun/Mimiron2/issues"
   },
   "main": "components/index",
-  "files": [
-    "components",
-    "style"
-  ],
   "license": "MIT",
   "dependencies": {
     "array-tree-filter": "~1.0.0",
