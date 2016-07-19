@@ -3,10 +3,14 @@ require('es5-shim/es5-sham');
 
 const React=require('react');
 const ReactDOM=require('react-dom');
+const Redux = require("redux");
+const ReactRedux = require("react-redux");
 
 const mimiron2 = {
   React: React,
   ReactDOM: ReactDOM,
+  Redux:Redux,
+  ReactRedux:ReactRedux,
   //基本组件
   Affix: require('./basic/affix'),
   DatePicker: require('./basic/date-picker'),

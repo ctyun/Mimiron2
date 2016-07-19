@@ -3,7 +3,8 @@ const Ajax = mimiron2.Ajax;
 
 window.mimiron2.RouteConfig = {
   "./debug/base-demo.jsx":/\/basedemo$/ig,
-  "./debug/bss-demo.jsx":/\/bssdemo$/ig
+  "./debug/bss-demo.jsx":/\/bssdemo$/ig,
+  "./debug/redux-demo.jsx":/\/reduxdemo/ig
 };
 
 if(window.location.pathname == "/login" || window.location.hash == '#/login'){
