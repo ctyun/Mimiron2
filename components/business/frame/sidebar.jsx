@@ -46,7 +46,7 @@ const Sidebar = React.createClass({
       toRender = createNode(this.props.list);
     return (
       <Menu onClick={this.handleClick}
-        style={{ "width": "15%", "float":"left","minHeight":"600px" }}
+        style={{ "width": "15%", "top": 40, "bottom": 0, "position": "absolute", "overflowX": "hidden", "overflowY": "scroll"}}
         defaultOpenKeys={this.props.list.defaultOpenKeys}
         selectedKeys={[this.state.current]}
         mode="inline">
