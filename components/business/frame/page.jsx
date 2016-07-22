@@ -10,7 +10,7 @@ const Page = React.createClass({
 			<div id="wrapper">
 				<div id="ajax-loading" className="la-anim-10"></div>
 				<Sidebar list={this.props.sidebarList}/>
-				<div id="current-page" style={{"width":"85%","top": 40, "bottom": 0, "position": "absolute", "margin-left": "15%", "overflowX": "hidden", "overflowY": "scroll"}}>
+				<div id="current-page" style={{"width":"85%","top": 40, "bottom": 0, "position": "absolute", "marginLeft": "15%", "overflowX": "hidden", "overflowY": "scroll"}}>
 					{this.props.children}
 				</div>
 			</div>

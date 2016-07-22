@@ -106,7 +106,8 @@ let Table = React.createClass({
 						onChange={this.onChange}
 						onShowSizeChange={this.onShowSizeChange}
 						defaultCurrent={this.state.pageNo} 
-						total={this.props.totalRows} />
+						total={this.props.totalRows} 
+						pageSizeOptions={["10","20","50","100","500",this.props.totalRows.toString()]}/>
 				</div>
 				:null}
 			</div>)
