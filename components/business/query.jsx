@@ -63,10 +63,10 @@ let Query = React.createClass({
 		let children = this.props.children;
 		for(let i in children){
 			if(children[i] && children[i].props){
-				formData[children[i].props["name"]] = children[i].props["defaultValue"]?children[i].props["defaultValue"]:null;
+				formData[children[i].props["name"]] = children[i].props["defaultValue"]!==undefined?children[i].props["defaultValue"]:null;
 			}
 		}
-		this.setState({formData:formData});
+		this.setState({formData});
 		this.props.onReset(e);
 	},
 	render() {
