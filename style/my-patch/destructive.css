@@ -24,3 +24,8 @@
 	height: 32px;
 	background-color: #eee;
 }
+
+/* 加宽默认分页器宽度 */
+.ant-pagination-options>.ant-pagination-options-size-changer>.ant-select-selection{
+	width: 100px;
+}
