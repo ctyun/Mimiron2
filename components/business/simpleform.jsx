@@ -8,10 +8,28 @@ import Input from "../basic/input";
 import Button from "../basic/button";
 import QueueAnim from "../basic/queue-anim";
 import Icon from "../basic/icon";
+import Misc from "../tools/misc";
 
 const SimpleForm = React.createClass({
 	getValue(){
-		return this.state.formData;
+		let formData = Object.assign({},this.state.formData);
+		console.log(this.state.formData, formData);
+		for(let i in formData){
+			if(formData[i] instanceof Array){
+				for(let j = 0; j<formData[i].length; j++){
+					formData[i+"_"+j] = formData[i][j]
+				}
+				delete formData[i]
+			}
+		}	
+		for(let i in formData){
+			if(formData[i].getTime){
+				console.log(formData[i]);
+				formData[i] = Misc.date2str(formData[i],"yyyy-MM-dd HH:mm:ss");
+			}
+		}
+		console.log(formData);
+		return formData;
 	},
 	getInitialState() {
 		return{

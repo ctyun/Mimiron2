@@ -72,11 +72,14 @@ let Misc={
 	},
 	date2str(d, format){
 		d = d || new Date();
-		format = format || "YYYY-MM-DD";
+		format = format || "yyyy-MM-dd";
 		let year = d.getFullYear();
 		let month = this.padZero(d.getMonth() + 1,2);
 		let day = this.padZero(d.getDate(),2);
-		return format.replace("YYYY",year).replace("yyyy",year).replace("%Y",year).replace("MM",month).replace("mm",month).replace("%m",month).replace("DD", day).replace("dd",day).replace("%D",day)
+		let hour = this.padZero(d.getHours(),2);
+		let minute = this.padZero(d.getMinutes(),2);
+		let second = this.padZero(d.getSeconds(),2);
+		return format.replace("yyyy",year).replace("%Y",year).replace("MM",month).replace("%m",month).replace("dd", day).replace("%D",day).replace("HH",hour).replace("%H",hour).replace("mm",minute).replace("%M",minute).replace("ss",second).replace("%S",second);
 	},
 	formatMoney(number, places, symbol, thousand, decimal) {
         places = !isNaN(places = Math.abs(places)) ? places : 2;
@@ -111,7 +114,7 @@ let Misc={
 	},
 	formatXML(xml){
 		let formatted = '';
-		let reg = /(>)[^<](<)(\/*)/g;
+		let reg = /(>)[^<]*(<)(\/*)/g;
 		xml = xml.replace(reg, '$1\r\n$2$3');
 		let pad = 0;
 		xml.split('\r\n').forEach((node,index)=>{
