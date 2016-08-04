@@ -79,7 +79,7 @@ let Misc={
 		let hour = this.padZero(d.getHours(),2);
 		let minute = this.padZero(d.getMinutes(),2);
 		let second = this.padZero(d.getSeconds(),2);
-		return format.replace("yyyy",year).replace("%Y",year).replace("MM",month).replace("%m",month).replace("dd", day).replace("%D",day).replace("HH",hour).replace("%H",hour).replace("mm",minute).replace("%M",minute).replace("ss",second).replace("%S",second);
+		return format.replace("yyyy",year).replace("YYYY",year).replace("%Y",year).replace("MM",month).replace("%m",month).replace("dd", day).replace("%D",day).replace("HH",hour).replace("%H",hour).replace("mm",minute).replace("%M",minute).replace("ss",second).replace("%S",second);
 	},
 	formatMoney(number, places, symbol, thousand, decimal) {
         places = !isNaN(places = Math.abs(places)) ? places : 2;
@@ -138,6 +138,15 @@ let Misc={
 	        pad += indent;
 		});
 		return formatted;
+	},
+	cache(key, value){
+		if(value===undefined){
+			return JSON.parse(sessionStorage.getItem(key));
+		} else if(value===null){
+			return sessionStorage.removeItem(key)
+		} else {
+			return sessionStorage.setItem(key, JSON.stringify(value));
+		}
 	}
 }
 
