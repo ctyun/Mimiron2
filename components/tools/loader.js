@@ -30,9 +30,20 @@ let Loader={
             if(RouteConfig[i].test(url)){
                 if(i.indexOf("|") != -1){
                     for(let j of i.split("|")){
+                        console.log(j.indexOf("?"));
+                        if(j.indexOf("?")!=-1){
+                            const get_str = s=>s.slice(s.indexOf("?"));
+                            console.log(get_str(j), get_str(url));
+                            j = j.replace(get_str(j), get_str(url));
+                        }
                         this.loadJSX(j);
                     }                  
                 } else {
+                    if(i.indexOf("?")!=-1){
+                        const get_str = s=>s.slice(s.indexOf("?"));
+                        console.log(get_str(i), get_str(url));
+                        i = i.replace(get_str(i), get_str(url));
+                    }
                     this.loadJSX(i);
                 }
                 return 
@@ -41,9 +52,19 @@ let Loader={
         for(let i in RouteConfig){ //如果不重复一次, 有时候会找不到, 原因尚不明确.
             if(RouteConfig[i].test(url)){
                 if(i.indexOf("|")){
-                    for(let j of i.split("|"))
+                    for(let j of i.split("|")){
+                        if(j.indexOf("?")!=-1){
+                            const get_str = s=>s.slice(s.indexOf("?"));
+                            j = j.replace(get_str(j), get_str(url));
+                        }
                         this.loadJSX(j);
+                    }   
                 } else {
+                    if(i.indexOf("?")!=-1){
+                        const get_str = s=>s.slice(s.indexOf("?"));
+                        console.log(get_str(i), get_str(url));
+                        i = i.replace(get_str(i), get_str(url));
+                    }
                     this.loadJSX(i);
                 }
                 return 
