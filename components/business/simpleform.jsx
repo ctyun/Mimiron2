@@ -103,6 +103,9 @@ const SimpleForm = React.createClass({
 						children[i].props["name"]),
 					value:this.state.formData[childName],
 				}
+				if(this.props.disableAll){
+					injectProps.disabled = true;
+				}
 				let child = React.cloneElement(children[i],injectProps);
 				formEntity.push(<Col span={this.props.itemSpan.toString()} key={i}>
 								<FormItem
