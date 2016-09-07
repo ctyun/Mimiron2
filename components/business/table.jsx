@@ -54,9 +54,11 @@ let Table = React.createClass({
 				columns[i]["filterMultiple"] = this.props.filterMultiple[i];
 			}
 		}
-		for(let i=0; i<data.length; i++){
-			if(!data[i]["key"])
-				data[i]["key"] = i.toString();
+		if(data&&data.length){
+			for(let i=0; i<data.length; i++){
+				if(!data[i]["key"])
+					data[i]["key"] = i.toString();
+			}
 		}
 		this.setState({columns:columns});
 	},

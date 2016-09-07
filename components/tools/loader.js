@@ -30,10 +30,8 @@ let Loader={
             if(RouteConfig[i].test(url)){
                 if(i.indexOf("|") != -1){
                     for(let j of i.split("|")){
-                        console.log(j.indexOf("?"));
                         if(j.indexOf("?")!=-1){
                             const get_str = s=>s.slice(s.indexOf("?"));
-                            console.log(get_str(j), get_str(url));
                             j = j.replace(get_str(j), get_str(url));
                         }
                         this.loadJSX(j);
@@ -41,7 +39,6 @@ let Loader={
                 } else {
                     if(i.indexOf("?")!=-1){
                         const get_str = s=>s.slice(s.indexOf("?"));
-                        console.log(get_str(i), get_str(url));
                         i = i.replace(get_str(i), get_str(url));
                     }
                     this.loadJSX(i);
@@ -62,7 +59,6 @@ let Loader={
                 } else {
                     if(i.indexOf("?")!=-1){
                         const get_str = s=>s.slice(s.indexOf("?"));
-                        console.log(get_str(i), get_str(url));
                         i = i.replace(get_str(i), get_str(url));
                     }
                     this.loadJSX(i);
