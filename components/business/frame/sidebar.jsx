@@ -29,7 +29,11 @@ const Sidebar = React.createClass({
     let createNode = node => {
       let toReturn = [];
       for(let item of node){ 
-        if(typeof(item.children) == "undefined" || item.children.length==0){
+        let childCnt = 0;
+        if(item.children instanceof Array){
+          item.children.map(node=>node.module_type!==3?childCnt++:null);
+        }
+        if(!childCnt){
           toReturn.push(<Menu.Item key={item.url || (dummyKey++).toString()}>{item.name || ""}</Menu.Item>)
         }
         else{

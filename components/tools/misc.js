@@ -147,6 +147,23 @@ let Misc={
 		} else {
 			return sessionStorage.setItem(key, JSON.stringify(value));
 		}
+	},
+	getAccess(tree){
+		const url = window.location.hash.replace("#","");
+	    const findAccess = (arr)=>{
+	      for(let node of arr){
+	        if(node.url === url){
+	          return node
+	        } else if (node.children && node.children.length){
+	          let target = findAccess(node.children);
+	          if(target){
+	            return target
+	          }
+	        }
+	      }
+	    }
+	    let access = findAccess(tree);
+	    return access.children.map(node=>node.code);
 	}
 }
 
