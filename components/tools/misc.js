@@ -163,8 +163,11 @@ let Misc={
 	      }
 	    }
 	    let access = findAccess(tree);
-	    console.log(access, url);
-	    return access.children.map(node=>node.code);
+	    if(access){
+	    	return access.children.map(node=>node.code);
+	    } else {
+	    	return []
+	    }
 	}
 }
 
