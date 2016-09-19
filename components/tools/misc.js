@@ -149,7 +149,7 @@ let Misc={
 		}
 	},
 	getAccess(tree){
-		const url = window.location.hash.replace("#","");
+		const url = window.location.hash.split("?")[0].replace("#","");
 	    const findAccess = (arr)=>{
 	      for(let node of arr){
 	        if(node.url === url){
@@ -163,6 +163,7 @@ let Misc={
 	      }
 	    }
 	    let access = findAccess(tree);
+	    console.log(access, url);
 	    return access.children.map(node=>node.code);
 	}
 }
