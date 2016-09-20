@@ -15,15 +15,18 @@ let Select = React.createClass({
 	},
 	renderSelect(){
 		let data=[];
-	    if (this.props.data){
-	      for(let i in this.props.data){
-	        if(typeof this.props.data[i].value != "undefined"){
-	          data.push(<Option value={this.props.data[i].value} disabled={this.props.data[i].disabled?true:false} {...this.props.data[i].extra} key={this.props.data[i].value}> {this.props.data[i].text} </Option>);
-	        } else{
-	          data.push(<Option value={i} key={i}>{this.props.data[i]}</Option>);
-	        }
-	      }
-	    }
+		if(!this.props.noDummyOption){
+			data.push(<Option value="" key="mimiron2_select_dummy_key">==啥也不选==</Option>);
+		}
+    if (this.props.data){
+      for(let i in this.props.data){
+        if(typeof this.props.data[i].value != "undefined"){
+          data.push(<Option value={this.props.data[i].value} disabled={this.props.data[i].disabled?true:false} {...this.props.data[i].extra} key={this.props.data[i].value}> {this.props.data[i].text} </Option>);
+        } else{
+          data.push(<Option value={i} key={i}>{this.props.data[i]}</Option>);
+        }
+      }
+    }
 		return(<SelectRaw {...this.props} onChange={this.props.onChange}>
 			{data.length==0?this.props.children:data}
 		</SelectRaw>);
