@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import Menu from "../../basic/menu";
 import Icon from "../../basic/icon";
 import Loader from "../../tools/loader"
@@ -23,6 +24,11 @@ const Sidebar = React.createClass({
       current: e.key
     });
     Loader.loadUrl(e.key);
+  },
+  componentDidMount(){
+    $(ReactDOM.findDOMNode(this.refs.menu)).resizable({
+      handles:"e",
+    })
   },
   render() {
     let dummyKey=0;
@@ -53,6 +59,7 @@ const Sidebar = React.createClass({
         style={{ "width": "15%", "top": 40, "bottom": 0, "position": "absolute", "overflowX": "hidden", "overflowY": "scroll"}}
         defaultOpenKeys={this.props.list.defaultOpenKeys}
         selectedKeys={[this.state.current]}
+        ref = "menu"
         mode="inline">
         <li></li>
         {toRender || <Menu.Item key="loading" disabled>loading</Menu.Item>}
