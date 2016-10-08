@@ -3,19 +3,39 @@ import Dropdown from "../../basic/dropdown";
 import Menu from "../../basic/menu";
 import Icon from "../../basic/icon";
 import Button from "../../basic/button";
+import Modal from "../../basic/modal";
+import Select from "../../business/select";
+import message from "../../basic/message";
 
 const Topbar = React.createClass({
   getDefaultProps() {
-      return{
-        onLogout:()=>{},
-        userName:"未登录用户",
-        title:"电信云公司业务系统",
+    return{
+      onLogout:()=>{},
+      userName:"未登录用户",
+      title:"电信云公司业务系统",
       }
+  },
+  getInitialState(){
+    return{
+      modalVisible:false,
+    }
+  },
+  handleChooseRole(){
+    Ajax.get("/api/user/getUserDetail", r=>{
+      this.setState({userRoles:r, modalVisible:true});
+    });
+  },
+  setRole(){
+    Ajax.post("/api/user/setRole", {selectedRole:this.state.selectedRole, selectedRoleName:this.state.userRoles[this.state.selectedRole]}, r=>{
+      message.info(r.text);
+      this.setState({modalVisible:false});
+      window.location.href = window.location.href; //刷新页面, 加载新的菜单项.
+    });
   },
   render() {
     let userDropdown= (<Menu>
       <Menu.Item key="0">
-        <a disabled>个人设置</a>
+        <a onClick={this.handleChooseRole}>选择角色</a>
       </Menu.Item>
       <Menu.Item key="1">
         <a onClick={this.props.onLogout}>注销</a>
@@ -35,6 +55,12 @@ const Topbar = React.createClass({
             </a>
           </Dropdown>
         </div>
+        <Modal title="选择角色" visible={this.state.modalVisible} footer={null} onCancel={()=>{this.setState({modalVisible:false})}}>
+          <div style={{textAlign:"center"}}>
+            <Select data={this.state.userRoles} noDummyOption={true} style={{width:200}} onChange={value=>{this.setState({selectedRole:value})}}/>
+            <Button type="primary" onClick={this.setRole}> 确认 </Button>
+          </div>
+        </Modal>
       </div>
     );
   }
