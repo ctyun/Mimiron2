@@ -16,7 +16,7 @@ let Select = React.createClass({
 	renderSelect(){
 		let data=[];
 		if(!this.props.noDummyOption){
-			data.push(<Option value="" key="mimiron2_select_dummy_key">==啥也不选==</Option>);
+			data.push(<Option value="" key="mimiron2_select_dummy_key">==请选择==</Option>);
 		}
     if (this.props.data){
       for(let i in this.props.data){

@@ -29,7 +29,7 @@ const Topbar = React.createClass({
     Ajax.post("/api/user/setRole", {selectedRole:this.state.selectedRole, selectedRoleName:this.state.userRoles[this.state.selectedRole]}, r=>{
       message.info(r.text);
       this.setState({modalVisible:false});
-      window.location.href = window.location.href; //刷新页面, 加载新的菜单项.
+      window.location.reload(); //刷新页面, 加载新的菜单项.
     });
   },
   render() {
