@@ -24,7 +24,6 @@ const SimpleForm = React.createClass({
 		}	
 		for(let i in formData){
 			if(formData[i].getTime){
-				console.log(formData[i]);
 				formData[i] = Misc.date2str(formData[i],"yyyy-MM-dd HH:mm:ss");
 			}
 		}

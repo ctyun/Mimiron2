@@ -72,6 +72,9 @@ const mimiron2 = {
   Ajax: require("./tools/ajax"),
   Loader: require("./tools/loader"),
   Misc: require("./tools/misc"),
+  //专用组件
+  Voucher: require("./dedicated/voucher"),
+  VoucherActivityChoices: require("./dedicated/voucherActivityChoices")
 };
 
 mimiron2.version = require('../package.json').version;
