@@ -1,4 +1,4 @@
-
+import message from "../basic/message";
 
 let Ajax = {
 	get: function(url, func) {
@@ -62,7 +62,7 @@ let Ajax = {
 	onError: function(obj, msg, e) {
 		// 取消css效果
 		--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
-		console.info(msg,e);
+		message.error(`请求出错:${e}`, 3);
 	},
 }
 
