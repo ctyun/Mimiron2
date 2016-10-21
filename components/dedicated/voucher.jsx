@@ -53,15 +53,17 @@ let Voucher=React.createClass({
                     }
                 }
             },
-            disabled:this.props.disabled,
+            disabled:this.props.disabled,  //not worked!
         };
         return (
             <div>
-                <Upload {...uploadProps} >
-                    <Button type="primary">
-                        <Icon type="upload"/> 添加文件
-                    </Button>
-                </Upload>
+                {this.props.disabled?null:(
+                    <Upload {...uploadProps} >
+                        <Button type="primary">
+                            <Icon type="upload"/> 添加文件
+                        </Button>
+                    </Upload> 
+                )}
                 <Table {...voucherTableProps} />
             </div>
         );
