@@ -27,8 +27,12 @@ let Select = React.createClass({
         }
       }
     }
+    if(this.props.children && this.props.children.length){
+    	data.push(...this.props.children);
+    }
+    console.log(this.props.children);
 		return(<SelectRaw {...this.props} onChange={this.props.onChange}>
-			{data.length==0?this.props.children:data}
+			{data}
 		</SelectRaw>);
 	},
 	renderLabledSelect(children){

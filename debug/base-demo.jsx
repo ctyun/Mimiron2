@@ -237,6 +237,12 @@ let Demo = React.createClass({
           <option value="audi">Audi</option>
         </select>
         <Select defaultValue="大于" style={{ width: 70 }} data={{"gt":"大于","st":"小于"}} onChange={(a,b,c)=>{console.log(a,b,c)}} />;
+        <Select defaultValue="lucy" style={{ width: 120 }}>
+	      <Option value="jack">Jack</Option>
+	      <Option value="lucy">Lucy</Option>
+	      <Option value="disabled" disabled>Disabled</Option>
+	      <Option value="yiminghe">yiminghe</Option>
+	    </Select>
       </Show>
       <Show name="简易表单">
         <SimpleForm ref="simpleform" itemSpan={12}>

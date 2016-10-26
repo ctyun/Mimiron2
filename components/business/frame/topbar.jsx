@@ -26,13 +26,13 @@ const Topbar = React.createClass({
   },
   handleChooseRole(){
     Ajax.get("/api/user/getUserDetail", r=>{
-      this.setState({userRoles:r, modalVisible:true});
+      this.setState({userRoles:r, modalVisibleChangeRole:true});
     });
   },
   setRole(){
     Ajax.post("/api/user/setRole", {selectedRole:this.state.selectedRole, selectedRoleName:this.state.userRoles[this.state.selectedRole]}, r=>{
       message.info(r.text);
-      this.setState({modalVisible:false});
+      this.setState({modalVisibleChangeRole:false});
       window.location.reload(); //刷新页面, 加载新的菜单项.
     });
   },
