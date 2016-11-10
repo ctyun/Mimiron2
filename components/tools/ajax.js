@@ -1,14 +1,15 @@
 import message from "../basic/message";
 
 let Ajax = {
-	get: function(url, func) {
+	get: function(url, func, dataType) {
 		//开始css效果
+		dataType = dataType === undefined?"json":dataType;
 		this.showLoading();
 		jQuery.ajax({
 			url:url,
 			method:"GET",
 			contentType:"application/json",
-			dataType: 'json',
+			dataType: dataType,
 			success: data => {
 				// 取消css效果
 				--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
@@ -20,14 +21,15 @@ let Ajax = {
 			complete: () => {}, //注意, 不能在complete中调用取消css的方法,因为func(data)可能报错.
 		})
 	},
-	post: function(url, params, func) {
+	post: function(url, params, func, dataType) {
+		dataType = dataType === undefined?"json":dataType;
 		this.showLoading();
 		jQuery.ajax({
 			url:url,
 			method:"POST",
 				data: JSON.stringify(params),
 				contentType:"application/json",
-				dataType: 'json',
+				dataType: dataType,
 				success: data => {
 		  		// 取消css效果
 				--mimironUse.ajaxLoadingStack==0?$("#ajax-loading")? $("#ajax-loading").removeClass("la-animate"): null:null;
