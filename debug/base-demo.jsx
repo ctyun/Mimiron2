@@ -267,9 +267,11 @@ let Demo = React.createClass({
           console.log(input);
         }} type="primary">取值</Button>
       </Show>
-      <Show name="表格列翻页">
-        <TableRaw columns={columns1} dataSource={data1} columnsPageRange={[2, 9]} columnsPageSize={4} />;
-      </Show>
+      <div id="print-dom" refs="print-ref">
+	      <Show name="表格列翻页">
+	        <TableRaw columns={columns1} dataSource={data1} columnsPageRange={[2, 9]} columnsPageSize={4} />;
+	      </Show>
+      </div>
       <Show name="日期时间控件">
         <DatePicker 
           showTime 
@@ -287,6 +289,12 @@ let Demo = React.createClass({
 		    <TabPane tab="选项卡二" key="2">选项卡二内容</TabPane>
 		    <TabPane tab="选项卡三" key="3">选项卡三内容</TabPane>
 		  </Tabs>
+		</div>
+      </Show>
+      <Show name="打印">
+		<div className="card-container">
+		  <Button type="primary" onClick={()=>Misc.print(<div>测试打印<Table {...tableProps} /></div>)}>打印传入的react元素</Button>
+		  <Button type="primary" onClick={()=>Misc.print("print-dom")}>根据id打印某个dom</Button>
 		</div>
       </Show>
     </div>

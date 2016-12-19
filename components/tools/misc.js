@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 let Misc={
 	$_GET() {
@@ -168,6 +170,15 @@ let Misc={
 	    } else {
 	    	return []
 	    }
+	},
+	print(dom, options){
+		if(typeof dom === "string"){
+			$("#"+dom).print(options)
+		} else if(typeof dom === "object"){
+			$(React.renderToStaticMarkup(dom)).print()
+		} else{
+			throw(new TypeError("print方法只能接受dom节点id的字符串, 或者react组件, 你传了个啥?"))
+		}
 	}
 }
 

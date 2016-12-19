@@ -81,7 +81,7 @@ const Init = React.createClass({
     },
     render(){
         return(
-            <Page sidebarList={this.local.sidebarList}>
+            <Page sidebarList={this.local.sidebarList} title="mimiron2测试">
                 <div id="page-wrapper"></div>
             </Page>
         );
