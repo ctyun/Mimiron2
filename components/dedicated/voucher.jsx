@@ -17,6 +17,7 @@ import Dropdown from "../basic/dropdown";
 import Row from "../basic/row";
 import Col from "../basic/col";
 import Ajax from "../tools/ajax";
+import Loader from "../tools/loader.js"
 
 
 let Voucher=React.createClass({
@@ -61,6 +62,9 @@ let Voucher=React.createClass({
                     <Upload {...uploadProps} >
                         <Button type="primary">
                             <Icon type="upload"/> 添加文件
+                        </Button>
+						<Button onClick={()=>Loader.openUrl("http://bss.ctyun.com.cn/template/excleMode.xls")}>
+                            下载模板
                         </Button>
                     </Upload> 
                 )}
