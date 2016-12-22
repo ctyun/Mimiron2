@@ -85,6 +85,7 @@ let Query = React.createClass({
 					onChange: this.setValue.bind(null, children[i].props["onChange"],
 						children[i].props["name"]),
 					value:this.state.formData[childName],
+					onKeyDown: (e)=>{if(e.keyCode===13){this.props.onSubmit(this.state.formData)}},
 				}
 				let child = React.cloneElement(children[i],injectProps);
 				formEntity.push(<Col span="8" key={i}>

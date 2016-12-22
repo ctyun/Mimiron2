@@ -80,3 +80,11 @@ ul.ant-pagination {
     display: table-row;
     width: 100%;
 }
+
+.ant-table-placeholder{
+    position: inherit;
+}
+
+.ant-table-thead > tr > th{
+    min-width: 80px;
+}
