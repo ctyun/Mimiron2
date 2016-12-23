@@ -88,3 +88,7 @@ ul.ant-pagination {
 .ant-table-thead > tr > th{
     min-width: 80px;
 }
+
+.ant-table-tbody > tr > td{
+    padding: 3px 8px;
+}
