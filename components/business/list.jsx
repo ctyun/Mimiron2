@@ -5,7 +5,9 @@ import Col from "../basic/col";
 let List = React.createClass({
 	getDefaultProps() {
 		return{
-			data:{"数据错误":"未传入data"}
+			data:{"数据错误":"未传入data"},
+			left:"12",
+			right:"12"
 		}
 	},
 	render() {
@@ -14,8 +16,8 @@ let List = React.createClass({
 		for(let i in this.props.data){
 			toReturn.push(
 				<Row key={dummyKey++}>
-			      <Col span="12" style={{textAlign:"right"}}>{i+":"} &nbsp;</Col>
-			      <Col span="12" style={{textAlign:"left"}}>&nbsp;{this.props.data[i]}</Col>
+			      <Col span={this.props.left} style={{textAlign:"right"}}>{i+":"} &nbsp;</Col>
+			      <Col span={this.props.right} style={{textAlign:"left"}}>&nbsp;{this.props.data[i]}</Col>
 			    </Row>
 			);
 		}
