@@ -116,7 +116,7 @@ let Misc={
 	},
 	formatXML(xml){
 		let formatted = '';
-		let reg = /(>)[^<]*(<)(\/*)/g;
+		let reg = /(>)(\r|\n|\r\n)*(<)(\/*)/g;
 		xml = xml.replace(reg, '$1\r\n$2$3');
 		let pad = 0;
 		xml.split('\r\n').forEach((node,index)=>{

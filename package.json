@@ -1,6 +1,6 @@
 {
   "name": "mimiron2",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "title": "mimiron2",
   "description": "基于react和ant.design的组件库",
   "keywords": [
@@ -109,7 +109,8 @@
     "webpack": "^1.10.1",
     "webpack-babel-jest": "^1.0.0",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.6.4"
+    "webpack-hot-middleware": "^2.6.4",
+    "webpack-dev-server":"1.14.1"
   },
   "scripts": {
     "babel": "babel components index.js --out-dir lib",
