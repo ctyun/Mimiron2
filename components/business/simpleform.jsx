@@ -51,11 +51,9 @@ const SimpleForm = React.createClass({
 		} else{
 			children = this.props.children;
 		}
-		for(let child of children){
-			if(child && child.props && (child.props["defaultValue"] || child.props["value"])){
-				if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
-					formData[child.props["name"]] = child.props["value"];
-				}
+		for(let i in children){
+			if(children[i] && children[i].props){
+				formData[children[i].props["name"]] = children[i].props["defaultValue"]!==undefined?children[i].props["defaultValue"]:null;
 			}
 		}
 		this.setState({formData:formData});
@@ -69,7 +67,7 @@ const SimpleForm = React.createClass({
 			children = nextProps.children;
 		}
 		for(let child of children){
-			if(child && child.props && (child.props["defaultValue"] || child.props["value"])){
+			if(child && (child.props["defaultValue"] || child.props["value"]!=undefined)){ //注意, 这里defaultValue必须是有意义的值, 因为Input组件默认的DefaultValue是""
 				if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
 					formData[child.props["name"]] = child.props["value"];
 				}
