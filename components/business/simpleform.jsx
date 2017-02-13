@@ -41,22 +41,11 @@ const SimpleForm = React.createClass({
 			itemSpan:24,
 			labelSpan:8,
 			wrapperSpan:16,
+			onReset: ()=>{},
 		}
 	},
 	componentWillMount(){  //Query可能也需要这个生命周期, 传入defaultValue还有点bug, 尚未修改.
-		let formData = this.state.formData;
-		let children;
-		if(!this.props.children.length){
-			children = [this.props.children];
-		} else{
-			children = this.props.children;
-		}
-		for(let i in children){
-			if(children[i] && children[i].props){
-				formData[children[i].props["name"]] = children[i].props["defaultValue"]!==undefined?children[i].props["defaultValue"]:null;
-			}
-		}
-		this.setState({formData:formData});
+		this.clear() //立即重置表单, 获得表单默认值.
 	},
 	componentWillReceiveProps(nextProps) {
 		let formData = this.state.formData;
@@ -82,6 +71,18 @@ const SimpleForm = React.createClass({
 		this.setState({formData:formData});
 		if(func)
 			func(e);
+	},
+	clear (e){
+		if(e) e.preventDefault();
+		let formData={};
+		let children = this.props.children;
+		for(let i in children){
+			if(children[i] && children[i].props){
+				formData[children[i].props["name"]] = children[i].props["defaultValue"]!==undefined?children[i].props["defaultValue"]:null;
+			}
+		}
+		this.setState({formData});
+		this.props.onReset(e);
 	},
 	render(){
 		let formData = this.state.formData;
