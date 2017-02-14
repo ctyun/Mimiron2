@@ -23,7 +23,7 @@ const SimpleForm = React.createClass({
 			}
 		}	
 		for(let i in formData){
-			if(formData[i].getTime){
+			if(formData[i] && formData[i].getTime){
 				formData[i] = Misc.date2str(formData[i],"yyyy-MM-dd HH:mm:ss");
 			}
 		}
@@ -45,7 +45,21 @@ const SimpleForm = React.createClass({
 		}
 	},
 	componentWillMount(){  //Query可能也需要这个生命周期, 传入defaultValue还有点bug, 尚未修改.
-		this.clear() //立即重置表单, 获得表单默认值.
+		let formData = this.state.formData;
+		let children;
+		if(!this.props.children.length){
+			children = [this.props.children];
+		} else{
+			children = this.props.children;
+		}
+		for(let child of children){
+			if(child && (child.props["defaultValue"] || child.props["value"]!=undefined)){ //注意, 这里defaultValue必须是有意义的值, 因为Input组件默认的DefaultValue是""
+				if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
+					formData[child.props["name"]] = child.props["value"];
+				}
+			}
+		}
+		this.setState({formData:formData});
 	},
 	componentWillReceiveProps(nextProps) {
 		let formData = this.state.formData;
