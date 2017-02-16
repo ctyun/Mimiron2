@@ -23,14 +23,14 @@ let Select = React.createClass({
         if(typeof this.props.data[i].value != "undefined"){
           data.push(<Option value={this.props.data[i].value} disabled={this.props.data[i].disabled?true:false} {...this.props.data[i].extra} key={this.props.data[i].value}> {this.props.data[i].text} </Option>);
         } else{
-          data.push(<Option value={i} key={i}>{this.props.data[i]}</Option>);
+          data.push(<Option value={i+""} key={i+""}>{this.props.data[i]+""}</Option>);
         }
       }
     }
     if(this.props.children && this.props.children.length){
     	data.push(...this.props.children);
     }
-		return(<SelectRaw {...this.props} onChange={this.props.onChange}>
+		return(<SelectRaw {...this.props} onChange={this.props.onChange} value={this.props.value===undefined?undefined:this.props.value+""}>
 			{data}
 		</SelectRaw>);
 	},

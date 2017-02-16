@@ -13,7 +13,6 @@ import Misc from "../tools/misc";
 const SimpleForm = React.createClass({
 	getValue(){
 		let formData = Object.assign({},this.state.formData);
-		console.log(this.state.formData, formData);
 		for(let i in formData){
 			if(formData[i] instanceof Array){
 				for(let j = 0; j<formData[i].length; j++){
@@ -27,7 +26,6 @@ const SimpleForm = React.createClass({
 				formData[i] = Misc.date2str(formData[i],"yyyy-MM-dd HH:mm:ss");
 			}
 		}
-		console.log(formData);
 		return formData;
 	},
 	getInitialState() {
@@ -53,7 +51,7 @@ const SimpleForm = React.createClass({
 			children = this.props.children;
 		}
 		for(let child of children){
-			if(child && (child.props["defaultValue"] || child.props["value"]!=undefined)){ //注意, 这里defaultValue必须是有意义的值, 因为Input组件默认的DefaultValue是""
+			if(child && (child.props["defaultValue"]!=undefined || child.props["value"]!=undefined)){ //注意, 这里defaultValue必须是有意义的值, 因为Input组件默认的DefaultValue是""
 				if(child.props["defaultValue"]?(child.props["value"] && child.props["value"] != formData[child.props["name"]] && child.props["value"] != child.props["defaultValue"]): child.props["value"] != formData[child.props["name"]]){
 					formData[child.props["name"]] = child.props["value"];
 				}

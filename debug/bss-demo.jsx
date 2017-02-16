@@ -167,6 +167,15 @@ let Demo = React.createClass({
       <Show name="表格">
         <Table {...tableProps} />
       </Show>
+      <Show name="Select">
+        <Select value={1} style={{ width: 200 }} >
+          <Option value={0} key={0}>Jack</Option>
+          <Option value={1} key={1}>Lucy</Option>
+          <Option value="disabled" disabled>Disabled</Option>
+          <Option value="yiminghe">yiminghe</Option>
+        </Select>
+        <Select value={1} data={{0:"123",1:"445"}} style={{ width: 200 }} />
+      </Show>
     </div>);
   }
 });
