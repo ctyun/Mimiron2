@@ -30,7 +30,7 @@ let Select = React.createClass({
     if(this.props.children && this.props.children.length){
     	data.push(...this.props.children);
     }
-		return(<SelectRaw {...this.props} onChange={this.props.onChange} value={this.props.value===undefined?undefined:this.props.value+""}>
+		return(<SelectRaw {...this.props} onChange={this.props.onChange} value={(this.props.value===undefined||this.props.value===null)?"":this.props.value+""}>
 			{data}
 		</SelectRaw>);
 	},
